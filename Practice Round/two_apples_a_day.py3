@@ -13,7 +13,7 @@ def two_apples_a_day():
         result = 0
         left, right = 0, len(A)-1
         while left <= right:
-            if (A[left]+A[right] == target):
+            if A[left]+A[right] == target:
                 if left == right:
                     assert(result == 0)
                     result = target//2
@@ -22,7 +22,7 @@ def two_apples_a_day():
                 continue
             if result:
                  return INF
-            if (A[left]+A[right] < target):
+            if A[left]+A[right] < target:
                 result = target-A[left]
                 left += 1
             else:
