@@ -17,7 +17,6 @@ def two_apples_a_day():
                 if left == right:
                     assert(result == 0)
                     result = target//2
-                    break
                 left += 1
                 right -= 1
                 continue
