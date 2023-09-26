@@ -7,7 +7,7 @@
 
 ## Rounds
 
-* [Hacker Cup 2022](https://github.com/kamyu104/FacebookHackerCup-2022)
+* [Hacker Cup 2022](https://github.com/kamyu104/MetaHackerCup-2022)
 * [Practice Round](https://github.com/kamyu104/MetaHackerCup-2032#practice-round)
 
 ## Practice Round
