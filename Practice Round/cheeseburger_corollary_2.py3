@@ -13,7 +13,6 @@ def cheeseburger_corollary_2():
 
     A, B, C = map(int, input().split())
     return max(count(0, C//B), count(1, (C-A)//B), count(2, (C-2*A)//B), count(C//A, 0))
-    
 
 for case in range(int(input())):
     print('Case #%d: %s' % (case+1, cheeseburger_corollary_2()))
