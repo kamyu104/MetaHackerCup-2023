@@ -3,7 +3,7 @@
 # Meta Hacker Cup 2023 Practice Round - Problem D. Road to Nutella
 # https://www.facebook.com/codingcompetitions/hacker-cup/2023/practice-round/problems/D
 #
-# Time:  O(N + M + Q + NlogN + QlogQ)
+# Time:  O(N + M + QlogQ)
 # Space: O(N + M + Q)
 #
 
@@ -54,6 +54,24 @@ def iter_biconnected_components(graph):  # Time: O(|V| + |E|) = O(N + 2N) = O(N)
         if v not in index:
             iter_biconnect(v, -1)
     return bccs
+
+def inplace_counting_sort(idxs, cb, reverse=False):  # Time: O(n)
+    if not idxs:
+        return
+    count = [0]*len(idxs)
+    for idx in idxs:
+        count[cb(idx)] += 1
+    for i in range(1, len(count)):
+        count[i] += count[i-1]
+    for i in reversed(range(len(idxs))):  # inplace but unstable sort
+        while idxs[i] >= 0:
+            count[cb(idxs[i])] -= 1
+            j = count[cb(idxs[i])]
+            idxs[i], idxs[j] = idxs[j], ~idxs[i]
+    for i in range(len(idxs)):
+        idxs[i] = ~idxs[i]  # restore values
+    if reverse:  # unstable sort
+        idxs.reverse()
 
 class UnionFind(object):  # Time: O(n * alpha(n)), Space: O(n)
     def __init__(self, n):
@@ -168,7 +186,7 @@ def road_to_nutella():
             uf.group_add(v, i)
     lookup2 = [0]*len(adj2)
     idxs = list(range(len(adj2)))
-    idxs.sort(key=lambda x: dist[x], reverse=True)  # Time: O(NlogN)
+    inplace_counting_sort(idxs, lambda x: dist[x], reverse=True)  # Time: O(N)
     for u in idxs:
         lookup2[u] = True
         result += dist[u]*sum(uf.union_set(u, v) for v in adj2[u] if lookup2[v])
