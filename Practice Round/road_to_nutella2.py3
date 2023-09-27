@@ -171,9 +171,7 @@ def road_to_nutella():
     idxs.sort(key=lambda x: dist[x], reverse=True)  # Time: O(NlogN)
     for u in idxs:
         lookup2[u] = True
-        for v in adj2[u]:
-            if lookup2[v]:
-                result += uf.union_set(u, v)*dist[u]
+        result += sum(uf.union_set(u, v)*dist[u] for v in adj2[u] if lookup2[v])
     return result
 
 for case in range(int(input())):
