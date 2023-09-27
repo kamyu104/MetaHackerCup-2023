@@ -149,14 +149,14 @@ def find_dist(bccs, adj, adj2):
     q = [i for i, bcc in enumerate(bccs) if not bfs(bcc, adj, color)]
     if not q:
         return []
-    dist = [INF for _ in range(len(bccs))]
+    dist = [-1 for _ in range(len(bccs))]
     for u in q:
         dist[u] = 0
     while q:
         new_q = []
         for u in q:
             for v in adj2[u]:
-                if dist[v] != INF:
+                if dist[v] != -1:
                     continue
                 dist[v] = dist[u]+1
                 new_q.append(v)
@@ -195,6 +195,5 @@ def road_to_nutella():
         result += min(min_dist(dist, tree_infos, u, lca), min_dist(dist, tree_infos, v, lca))
     return result
 
-INF = float("inf")
 for case in range(int(input())):
     print('Case #%d: %s' % (case+1, road_to_nutella()))
