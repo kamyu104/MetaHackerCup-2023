@@ -125,7 +125,7 @@ def min_dist(dist, tree_infos, curr, lca):  # Time: O(logN)
     assert(curr == lca)
     return result
 
-def bfs(bcc, adj, color):  # a graph is bipartite if and only if it contains no odd cycles
+def is_bipartite(bcc, adj, color):  # a graph is bipartite if and only if it contains no odd cycles
     root = next(iter(bcc))
     color[root] = 0
     q = [root]
@@ -146,7 +146,7 @@ def bfs(bcc, adj, color):  # a graph is bipartite if and only if it contains no 
 
 def find_dist(bccs, adj, adj2):
     color = [-1]*len(adj)
-    q = [i for i, bcc in enumerate(bccs) if not bfs(bcc, adj, color)]
+    q = [i for i, bcc in enumerate(bccs) if not is_bipartite(bcc, adj, color)]
     if not q:
         return []
     dist = [-1 for _ in range(len(bccs))]
