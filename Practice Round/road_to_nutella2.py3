@@ -56,8 +56,6 @@ def iter_biconnected_components(graph):  # Time: O(|V| + |E|) = O(N + 2N) = O(N)
     return bccs
 
 def inplace_counting_sort(idxs, cb, reverse=False):  # Time: O(n)
-    if not idxs:
-        return
     count = [0]*len(idxs)
     for idx in idxs:
         count[cb(idx)] += 1
