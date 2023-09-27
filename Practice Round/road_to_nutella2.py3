@@ -184,7 +184,7 @@ def road_to_nutella():
             uf.group_add(v, i)
     idxs = list(range(len(adj2)))
     inplace_counting_sort(idxs, lambda x: dist[x], reverse=True)  # Time: O(N)
-    lookup2 = [0]*len(adj2)
+    lookup2 = [False]*len(adj2)
     for u in idxs:
         lookup2[u] = True
         result += dist[u]*sum(uf.union_set(u, v) for v in adj2[u] if lookup2[v])
