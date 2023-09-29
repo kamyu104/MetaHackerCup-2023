@@ -161,7 +161,7 @@ def find_dist(bccs, adj, adj2):
                 dist[v] = dist[u]+1
                 new_q.append(v)
         q = new_q
-    return [[d] for d in dist]
+    return dist
 
 def road_to_nutella():
     N, M = list(map(int, input().split()))
@@ -184,7 +184,7 @@ def road_to_nutella():
             continue
         adj2[nu].append(nv)
         adj2[nv].append(nu)
-    dist = find_dist(bccs, adj, adj2)
+    dist = [[d] for d in find_dist(bccs, adj, adj2)]
     if not dist:
         return -1*len(queries)
     tree_infos = TreeInfos(adj2, cb=partial(calc_dist, dist))
