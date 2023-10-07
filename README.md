@@ -27,6 +27,6 @@
 |B1| [Sum 41 (Chapter 1)](https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-1/problems/B1)| [Python3](./Round%201/sum_41_chapter_1.py3) [Python3](./Round%201/sum_41_chapter_1-2.py3) | _O(45000 * 41)_ | _O(41)_ | Easy | | Number Theory, Backtracking |
 |B2| [Sum 41 (Chapter 2)](https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-1/problems/B2)| [Python3](./Round%201/sum_41_chapter_2.py3) | _O(45000 * 41)_ | _O(41)_ | Medium | | Backtracking |
 |C1| [Back in Black (Chapter 1)](https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-1/problems/C1)| [Python3](./Round%201/back_in_black_chapter_1.py3) | _O(NlogN + Q)_ | _O(N)_ | Easy | | Number Theory, Greedy |
-|C2| [Back in Black (Chapter 1)](https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-1/problems/C2)| [Python3](./Round%201/back_in_black_chapter_2.py3) | _O(NlogN + Q)_ | _O(N)_ | Medium | | Number Theory, Greedy |
+|C2| [Back in Black (Chapter 2)](https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-1/problems/C2)| [Python3](./Round%201/back_in_black_chapter_2.py3) | _O(NlogN + Q)_ | _O(N)_ | Medium | | Number Theory, Greedy |
 |D| [Today is Gonna be a Great Day](https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-1/problems/D)| | |  | Medium | | Segment Tree |
 |E| [Bohemian Rap-sody](https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-1/problems/E)| | |  | Hard | | |
