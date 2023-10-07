@@ -14,7 +14,7 @@ def sum_41_chapter_1():
                 if not result or len(result) > len(curr):
                     result[:] = curr
             return
-        for i in reversed(range(1, min(total, curr[-1] if curr else float("inf"))+1)):
+        for i in range((curr[-1] if curr else 1), total+1):
             if product%i:
                 continue
             curr.append(i)
