@@ -21,11 +21,11 @@ def sum_41_chapter_1():
             backtracking(total-i, product//i, curr)
             curr.pop()
 
-    TARGET = 41
     P = int(input())
     result = []
     backtracking(TARGET, P, [])
     return f'{len(result)} {" ".join(map(str, result))}' if result else -1
 
+TARGET = 41
 for case in range(int(input())):
     print('Case #%d: %s' % (case+1, sum_41_chapter_1()))

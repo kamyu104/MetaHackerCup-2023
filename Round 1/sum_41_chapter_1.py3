@@ -8,7 +8,6 @@
 #
 
 def sum_41_chapter_1():
-    TARGET = 41
     P = int(input())
     result = []
     p = 2
@@ -24,5 +23,6 @@ def sum_41_chapter_1():
     result.extend((1 for _ in range(TARGET-sum(result))))
     return f'{len(result)} {" ".join(map(str, result))}'
 
+TARGET = 41
 for case in range(int(input())):
     print('Case #%d: %s' % (case+1, sum_41_chapter_1()))
