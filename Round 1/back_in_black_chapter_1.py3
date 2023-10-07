@@ -3,7 +3,7 @@
 # Meta Hacker Cup 2023 Round 1 - Problem C1. Back in Black (Chapter 1)
 # https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-1/problems/C1
 #
-# Time:  O(NlogN)
+# Time:  O(NlogN + Q)
 # Space: O(N)
 #
 
