@@ -24,7 +24,7 @@
 | # | Title | Solution | Time | Space | Difficulty | Tag | Note |
 |---| ----- | -------- | ---- | ----- | ---------- | --- | ---- |
 |A| [Here Comes Santa Claus](https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-1/problems/A)| [Python3](./Round%201/here_comes_santa_claus.py3) | _O(n)_ | _O(1)_ | Easy | | Math |
-|B1| [Sum 41 (Chapter 1)](https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-1/problems/B1)| [Python3](./Round%201/sum_41_chapter_1.py3) [Python3](./Round%201/sum_41_chapter_1-2.py3) | _O(44583 * 41)_ | _O(41)_ | Easy | | Constructive Algorithms, Number Theory, Backtracking, Partitions |
+|B1| [Sum 41 (Chapter 1)](https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-1/problems/B1)| [Python3](./Round%201/sum_41_chapter_1.py3) [Python3](./Round%201/sum_41_chapter_1-2.py3) | _O(44583 * 41)_ | _O(41)_ | Easy | | Constructive Algorithms, Greedy, Number Theory, Backtracking, Partitions |
 |B2| [Sum 41 (Chapter 2)](https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-1/problems/B2)| [Python3](./Round%201/sum_41_chapter_2.py3) | _O(44583 * 41)_ | _O(41)_ | Medium | | Backtracking, Partitions |
 |C1| [Back in Black (Chapter 1)](https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-1/problems/C1)| [Python3](./Round%201/back_in_black_chapter_1.py3) | _O(NlogN + Q)_ | _O(N)_ | Easy | | Number Theory, Greedy |
 |C2| [Back in Black (Chapter 2)](https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-1/problems/C2)| [Python3](./Round%201/back_in_black_chapter_2.py3) | _O(NlogN + Q)_ | _O(N)_ | Medium | | Number Theory, Greedy |
