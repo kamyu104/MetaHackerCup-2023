@@ -4,7 +4,7 @@
 # https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-1/problems/B1
 #
 # Time:  precompute: O(sqrt(MAX_P))
-#        runtime: O(logP + pi(sqrt(P))) = O(logP + sqrt(P)/log(sqrt(P)))
+#        runtime: O(logP + pi(sqrt(P))) = O(logP + sqrt(P)/log(sqrt(P))), pi(n) = number of primes in a range [1, n] = O(n/logn) by prime number theorem, see https://en.wikipedia.org/wiki/Prime_number_theorem
 # Space: O(K), K = 41
 #
 
