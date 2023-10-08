@@ -4,7 +4,7 @@
 # https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-1/problems/B1
 #
 # Time:  precompute: O(sqrt(MAX_P))
-#        runtime: O(logP)
+#        runtime: O(logP + pi(sqrt(P))) = O(logP + sqrt(P)/log(sqrt(P)))
 # Space: O(K), K = 41
 #
 
