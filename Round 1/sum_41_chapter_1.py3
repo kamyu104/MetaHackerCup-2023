@@ -3,7 +3,8 @@
 # Meta Hacker Cup 2023 Round 1 - Problem B1. Sum 41 (Chapter 1)
 # https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-1/problems/B1
 #
-# Time:  O(sqrt(P))
+# Time:  precompute: O(sqrt(MAX_P))
+#        runtime: O(logP)
 # Space: O(K), K = 41
 #
 
