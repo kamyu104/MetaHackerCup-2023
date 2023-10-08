@@ -35,7 +35,7 @@ def sum_41_chapter_2():
     P = int(input())
     result = []
     for curr in unique_partitions(TARGET):
-        if reduce(lambda x, y: x*y, curr, 1) != P:
+        if reduce(lambda x, y: x*y, curr) != P:
             continue
         if not result or len(result) > len(curr):
             result = curr

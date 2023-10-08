@@ -33,7 +33,7 @@ def unique_partitions(n):
 
 def sum_41_chapter_1():
     P = int(input())
-    result = next((curr for curr in unique_partitions(TARGET) if reduce(lambda x, y: x*y, curr, 1) == P), [])
+    result = next((curr for curr in unique_partitions(TARGET) if reduce(lambda x, y: x*y, curr) == P), [])
     return f'{len(result)} {" ".join(map(str, result))}' if result else -1
 
 TARGET = 41
