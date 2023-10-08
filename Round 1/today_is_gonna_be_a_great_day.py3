@@ -100,7 +100,7 @@ def today_is_gonna_be_a_great_day():
     N = int(input())
     A = list(map(int, input().split()))
     Q = int(input())
-    L_R = list(map(lambda x: int(x)-1, input().split()) for _ in range(Q))
+    L_R = [list(map(lambda x: int(x)-1, input().split())) for _ in range(Q)]
     st = SegmentTree(N, build_fn=build, update_fn=update, update_lazy_fn=update_lazy)
     st.update(0, N-1, MOD-1)
     result = 0
