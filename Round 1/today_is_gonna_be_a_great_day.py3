@@ -15,7 +15,6 @@ class SegmentTree(object):  # 0-based index
                  query_fn=lambda x, y: y if x is None else max(x, y),
                  update_fn=lambda x, y: y if x is None else x+y):
         self.base = N
-        self.H = (N-1).bit_length()
         self.query_fn = query_fn
         self.update_fn = update_fn
         self.tree = [None]*(2*N)
@@ -29,16 +28,6 @@ class SegmentTree(object):  # 0-based index
         self.tree[x] = self.update_fn(self.tree[x], val)
         if x < self.base:
             self.lazy[x] = self.update_fn(self.lazy[x], val)
-
-    def __push(self, x):
-        n = self.H
-        while n:
-            y = x >> n
-            if self.lazy[y] is not None:
-                self.__apply(y<<1, self.lazy[y])
-                self.__apply((y<<1)+1, self.lazy[y])
-                self.lazy[y] = None
-            n -= 1
 
     def update(self, L, R, h):  # Time: O(logN), Space: O(N)
         def pull(x):
