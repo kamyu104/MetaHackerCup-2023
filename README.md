@@ -28,5 +28,5 @@
 |B2| [Sum 41 (Chapter 2)](https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-1/problems/B2)| [Python3](./Round%201/sum_41_chapter_2.py3) [Python3](./Round%201/sum_41_chapter_2-2.py3) | _O(44583 * K)_ | _O(K)_ | Medium | | Backtracking, Unique Partitions |
 |C1| [Back in Black (Chapter 1)](https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-1/problems/C1)| [Python3](./Round%201/back_in_black_chapter_1.py3) | _O(NlogN + Q)_ | _O(N)_ | Easy | | Number Theory, Greedy |
 |C2| [Back in Black (Chapter 2)](https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-1/problems/C2)| [Python3](./Round%201/back_in_black_chapter_2.py3) | _O(NlogN + Q)_ | _O(N)_ | Medium | | Number Theory, Greedy |
-|D| [Today is Gonna be a Great Day](https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-1/problems/D)| | |  | Medium | | Segment Tree |
+|D| [Today is Gonna be a Great Day](https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-1/problems/D)| [Python3](./Round%201/today_is_gonna_be_a_great_day.py3) | _O(NlogN + QlogN)_ | _O(N)_ | Medium | | Segment Tree |
 |E| [Bohemian Rap-sody](https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-1/problems/E)| | |  | Hard | | |
