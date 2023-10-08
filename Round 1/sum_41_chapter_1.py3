@@ -4,7 +4,7 @@
 # https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-1/problems/B1
 #
 # Time:  O(sqrt(P))
-# Space: O(k), k = 41
+# Space: O(K), K = 41
 #
 
 def sum_41_chapter_1():
