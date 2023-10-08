@@ -52,8 +52,6 @@ class SegmentTree(object):  # 0-based index
             return
         L += self.base
         R += self.base
-        # self.__push(L)  # enable if query all by self.tree[1]
-        # self.__push(R)  # enable if query all by self.tree[1]
         L0, R0 = L, R
         while L <= R:
             if L & 1:  # is right child
@@ -66,26 +64,6 @@ class SegmentTree(object):  # 0-based index
             R >>= 1
         pull(L0)
         pull(R0)
-
-    def query(self, L, R):  # Time: O(logN), Space: O(N)
-        result = None
-        if L > R:
-            return result
-
-        L += self.base
-        R += self.base
-        self.__push(L)
-        self.__push(R)
-        while L <= R:
-            if L & 1:  # is right child
-                result = self.query_fn(result, self.tree[L])
-                L += 1
-            if R & 1 == 0:  # is left child
-                result = self.query_fn(result, self.tree[R])
-                R -= 1
-            L >>= 1
-            R >>= 1
-        return result
 
 def today_is_gonna_be_a_great_day():
     def build(i):
@@ -111,7 +89,7 @@ def today_is_gonna_be_a_great_day():
     result = 0
     for L, R in L_R:
         st.update(L, R, [1])
-        result += -st.query(0, N-1)[0][1]+1
+        result += -st.tree[1][0][1]+1
     return result
 
 MOD = 10**9+7
