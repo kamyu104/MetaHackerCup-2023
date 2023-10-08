@@ -3,7 +3,7 @@
 # Meta Hacker Cup 2023 Round 1 - Problem D. Today is Gonna be a Great Day
 # https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-1/problems/D
 #
-# Time:  O(QlogN)
+# Time:  O(NlogN + QlogN)
 # Space: O(N)
 #
 
@@ -13,13 +13,11 @@ class SegmentTree(object):  # 0-based index
     def __init__(self, N,
                  build_fn=lambda _: 0,
                  query_fn=lambda x, y: y if x is None else max(x, y),
-                 update_fn=lambda x, y: y if x is None else x+y,
-                 update_lazy_fn=lambda x, y: y if x is None else x+y):  # added
+                 update_fn=lambda x, y: y if x is None else x+y):
         self.base = N
         self.H = (N-1).bit_length()
         self.query_fn = query_fn
         self.update_fn = update_fn
-        self.update_lazy_fn = update_lazy_fn  # added
         self.tree = [None]*(2*N)
         self.lazy = [None]*N
         for i in range(self.base, self.base+N):
@@ -30,7 +28,17 @@ class SegmentTree(object):  # 0-based index
     def __apply(self, x, val):
         self.tree[x] = self.update_fn(self.tree[x], val)
         if x < self.base:
-            self.lazy[x] = self.update_lazy_fn(self.lazy[x], val)  # modified
+            self.lazy[x] = self.update_fn(self.lazy[x], val)
+
+    def __push(self, x):
+        n = self.H
+        while n:
+            y = x >> n
+            if self.lazy[y] is not None:
+                self.__apply(y<<1, self.lazy[y])
+                self.__apply((y<<1)+1, self.lazy[y])
+                self.lazy[y] = None
+            n -= 1
 
     def update(self, L, R, h):  # Time: O(logN), Space: O(N)
         def pull(x):
@@ -44,6 +52,8 @@ class SegmentTree(object):  # 0-based index
             return
         L += self.base
         R += self.base
+        # self.__push(L)  # enable if query all by self.tree[1]
+        # self.__push(R)  # enable if query all by self.tree[1]
         L0, R0 = L, R
         while L <= R:
             if L & 1:  # is right child
@@ -58,24 +68,14 @@ class SegmentTree(object):  # 0-based index
         pull(R0)
 
     def query(self, L, R):  # Time: O(logN), Space: O(N)
-        def push(x):
-            n = self.H
-            while n:
-                y = x >> n
-                if self.lazy[y] is not None:
-                    self.__apply(y<<1, self.lazy[y])
-                    self.__apply((y<<1)+1, self.lazy[y])
-                    self.lazy[y] = None
-                n -= 1
-
         result = None
         if L > R:
             return result
 
         L += self.base
         R += self.base
-        push(L)
-        push(R)
+        self.__push(L)
+        self.__push(R)
         while L <= R:
             if L & 1:  # is right child
                 result = self.query_fn(result, self.tree[L])
@@ -89,24 +89,29 @@ class SegmentTree(object):  # 0-based index
 
 def today_is_gonna_be_a_great_day():
     def build(i):
-        return [A[i], -i]
+        return [(A[i], -i), ((-A[i])%MOD, -i)]
+
+    def query(x, y):
+        return y if x is None else [max(x[0], y[0]), max(x[1], y[1])]
 
     def update(x, y):
-        return [(x[0]*y)%MOD, x[1]]
-
-    def update_lazy(x, y):
-        return y if x is None else (x*y)%MOD
+        if x is None:
+            return y
+        if len(x) == 1:
+            return [x[0]^y[0]]
+        if y[0]:
+            x[0], x[1] = x[1], x[0]
+        return x
 
     N = int(input())
     A = list(map(int, input().split()))
     Q = int(input())
     L_R = [list(map(lambda x: int(x)-1, input().split())) for _ in range(Q)]
-    st = SegmentTree(N, build_fn=build, update_fn=update, update_lazy_fn=update_lazy)
-    st.update(0, N-1, MOD-1)
+    st = SegmentTree(N, build_fn=build, query_fn=query, update_fn=update)
     result = 0
     for L, R in L_R:
-        st.update(L, R, MOD-1)
-        result += -st.query(L, R)[1]+1
+        st.update(L, R, [1])
+        result += -st.query(0, N-1)[0][1]+1
     return result
 
 MOD = 10**9+7
