@@ -4,22 +4,27 @@
 # https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-1/problems/B1
 #
 # Time:  O(sqrt(P))
-# Space: O(logP)
+# Space: O(k), k = 41
 #
 
 def sum_41_chapter_1():
     P = int(input())
     result = []
+    total = 0
     p = 2
     while p*p <= P:
         while P%p == 0:
             P //= p
             result.append(p)
+            total += result[-1]
+            if total > TARGET:
+                return -1
         p += 1
     if P != 1:
         result.append(P)
-    if sum(result) > TARGET:
-        return -1
+        total += result[-1]
+        if total > TARGET:
+            return -1
     result.extend((1 for _ in range(TARGET-sum(result))))
     return f'{len(result)} {" ".join(map(str, result))}'
 

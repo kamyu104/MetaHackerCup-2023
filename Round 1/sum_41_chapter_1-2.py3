@@ -3,8 +3,8 @@
 # Meta Hacker Cup 2023 Round 1 - Problem B1. Sum 41 (Chapter 1)
 # https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-1/problems/B1
 #
-# Time:  O(partitions(k) * k) = O(44583 * 41), k = 41
-# Space: O(k) = O(1)
+# Time:  O(partitions(k) * k) = O(44583 * k), k = 41
+# Space: O(k)
 #
 
 def sum_41_chapter_1():
