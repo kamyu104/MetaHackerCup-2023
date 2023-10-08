@@ -10,7 +10,7 @@
 from functools import reduce
 
 # reference: https://www.geeksforgeeks.org/generate-unique-partitions-of-an-integer/
-def unique_partitions(n):
+def next_partition(n):
     p = [0]*n 
     k = 0
     p[k] = n
@@ -34,7 +34,7 @@ def unique_partitions(n):
 def sum_41_chapter_2():
     P = int(input())
     result = []
-    for curr in unique_partitions(TARGET):
+    for curr in next_partition(TARGET):
         if reduce(lambda x, y: x*y, curr) != P:
             continue
         if not result or len(result) > len(curr):
