@@ -7,7 +7,7 @@
 # Space: O(K)
 #
 
-def sum_41_chapter_1():
+def sum_41_chapter_2():
     def backtracking(total, product, curr):
         if total == 0:
             if product == 1:
@@ -28,4 +28,4 @@ def sum_41_chapter_1():
 
 TARGET = 41
 for case in range(int(input())):
-    print('Case #%d: %s' % (case+1, sum_41_chapter_1()))
+    print('Case #%d: %s' % (case+1, sum_41_chapter_2()))

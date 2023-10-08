@@ -11,7 +11,7 @@ def sum_41_chapter_1():
     def backtracking(total, product):
         if total == 0:
             return product == 1
-        for i in range((curr[-1] if curr else 1), total+1):
+        for i in range((result[-1] if result else 1), total+1):
             if product%i:
                 continue
             result.append(i)
