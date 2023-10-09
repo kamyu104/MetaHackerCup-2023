@@ -83,8 +83,7 @@ def bohemian_rapsody():
             if not k < len(W[i]):
                 continue
             lookup[i] = trie[lookup[i]][W[i][k]]
-            if lookup[i]:
-                new_idxs.append(i)
+            new_idxs.append(i)
         idxs = new_idxs
         for i in range(len(idxs)):
             suffix[i] = 0
