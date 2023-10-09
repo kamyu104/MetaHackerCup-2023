@@ -82,7 +82,7 @@ def bohemian_rapsody():
         alives = [i for i in alives if k < len(W[i])]
         for i in alives:
             lookup[i] = trie[lookup[i]][W[i][k]]
-        qs = [(bisect_left(alives, l), bisect_right(alives, r)-1) for l, r in group]
+        qs = [(bisect_left(alives, l), bisect_right(alives, r)-1) for l, r in group]  # Time: O(QlogN)
         result += sum(ans for ans in mo_s_algorithm(alives, qs))
     return result
 
