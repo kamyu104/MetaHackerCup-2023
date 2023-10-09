@@ -11,7 +11,7 @@ from bisect import bisect_left, bisect_right
 
 def bohemian_rapsody():
     def new_node():
-        curr.append([-1]*26)
+        curr.append([None]*26)
         return len(curr)-1
 
     # reference: https://cp-algorithms.com/data_structures/sqrt_decomposition.html
@@ -71,7 +71,7 @@ def bohemian_rapsody():
         alives = [i for i in alives if k < len(W[i])]
         prev, curr = curr, []
         for i in alives:
-            if prev[lookup[i]][W[i][k]] == -1:
+            if prev[lookup[i]][W[i][k]] is None:
                 prev[lookup[i]][W[i][k]] = new_node()
             lookup[i] = prev[lookup[i]][W[i][k]]
         cnt = [0]*len(curr)
