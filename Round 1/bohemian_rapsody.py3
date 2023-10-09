@@ -73,7 +73,7 @@ def bohemian_rapsody():
             idx = trie[idx][c]
 
     cnt = [0]*len(trie)
-    suffix = [0]*(N+1)
+    suffix = [0]*N
     lookup = [0]*N
     idxs = list(range(N))
     result = 0
