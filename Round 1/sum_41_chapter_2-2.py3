@@ -11,7 +11,7 @@ from functools import reduce
 
 # reference: https://www.geeksforgeeks.org/generate-unique-partitions-of-an-integer/
 def next_partition(n):
-    p = [0]*n 
+    p = [0]*n
     k = 0
     p[k] = n
     while True:

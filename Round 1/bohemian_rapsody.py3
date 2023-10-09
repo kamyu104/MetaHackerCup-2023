@@ -9,7 +9,7 @@
 
 from bisect import bisect_left, bisect_right
 
-def bohemian_rapsody(): 
+def bohemian_rapsody():
     def new_node():
         trie.append([0]*26)
         return len(trie)-1
@@ -91,6 +91,6 @@ def bohemian_rapsody():
         queries = [(bisect_left(idxs, l), bisect_right(idxs, r)-1) for l, r in queries]
         result += sum(ans for ans in mo_s_algorithm())
     return result
-    
+
 for case in range(int(input())):
     print('Case #%d: %s' % (case+1, bohemian_rapsody()))
