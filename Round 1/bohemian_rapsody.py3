@@ -26,12 +26,12 @@ def bohemian_rapsody():
             cnt[idx] -= 1
             suffix[cnt[idx]] -= 1
 
-        def get_ans():  # Time: O(sqrt(N))
+        def get_ans(l):  # Time: O(sqrt(N))
             ans = suffix[0]
             for i in range(1, len(suffix)):
                 if i >= ans:
                     break
-                assert((i+1)*i//2 <= len(idxs))
+                assert((i+1)*i//2 <= l)
                 ans = min(ans, i+suffix[(i-1)+1])
             return ans
 
@@ -51,7 +51,7 @@ def bohemian_rapsody():
             while right > r:
                 remove(right)
                 right -= 1
-            yield get_ans()
+            yield get_ans(right-left+1)
 
     N = int(input())
     W = [list(map(lambda x: ord(x)-ord('a'), input()))[::-1] for _ in range(N)]
