@@ -27,6 +27,7 @@ def bohemian_rapsody():
             for i in range(1, len(cnt2)):
                 if i >= ans:
                     break
+                assert((i+1)*i//2 <= len(idxs))
                 remain -= cnt2[i]
                 ans = min(ans, i+remain)
             return ans
