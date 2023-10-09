@@ -23,12 +23,12 @@ def bohemian_rapsody():
             cnt2[cnt[idx]] += 1
 
         def get_ans():  # Time: sqrt(N)
-            ans = curr = -cnt2[0]
+            ans = remain = -cnt2[0]
             for i in range(1, len(cnt2)):
                 if i >= ans:
                     break
-                curr -= cnt2[i]
-                ans = min(ans, curr+i)
+                remain -= cnt2[i]
+                ans = min(ans, i+remain)
             return ans
 
         block_size = int(len(idxs)**0.5)
