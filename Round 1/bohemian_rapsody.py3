@@ -16,20 +16,23 @@ def bohemian_rapsody():
 
     # reference: https://cp-algorithms.com/data_structures/sqrt_decomposition.html
     def mo_s_algorithm():  # Time: O(QlogQ + (N + Q) * sqrt(N))
-        def add(i, x):
+        def add(i):
             idx = lookup[idxs[i]]
-            cnt2[cnt[idx]] -= 1
-            cnt[idx] += x
-            cnt2[cnt[idx]] += 1
+            cnt[idx] += 1
+            suffix[cnt[idx]] += 1
+
+        def remove(i):
+            idx = lookup[idxs[i]]
+            suffix[cnt[idx]] -= 1
+            cnt[idx] -= 1
 
         def get_ans():  # Time: O(sqrt(N))
-            ans = remain = -cnt2[0]
-            for i in range(1, len(cnt2)):
+            ans = suffix[1]
+            for i in range(1, len(suffix)):
                 if i >= ans:
                     break
                 assert((i+1)*i//2 <= len(idxs))
-                remain -= cnt2[i]
-                ans = min(ans, i+remain)
+                ans = min(ans, i+suffix[i+1])
             return ans
 
         block_size = int(len(idxs)**0.5)
@@ -38,19 +41,19 @@ def bohemian_rapsody():
         for l, r in queries:  # Time: O((N + Q) * sqrt(N))
             while left > l:
                 left -= 1
-                add(left, +1)
+                add(left)
             while right < r:
                 right += 1
-                add(right, +1)
+                add(right)
             while left < l:
-                add(left, -1)
+                remove(left)
                 left += 1
             while right > r:
-                add(right, -1)
+                remove(right)
                 right -= 1
             yield get_ans()
         for i in range(left, right+1):
-            add(i, -1)
+            remove(i)
 
     N = int(input())
     W = [list(map(lambda x: ord(x)-ord('a'), input()))[::-1] for _ in range(N)]
@@ -72,7 +75,7 @@ def bohemian_rapsody():
             idx = trie[idx][c]
 
     cnt = [0]*len(trie)
-    cnt2 = [0]*(N+1)
+    suffix = [0]*(N+1)
     lookup = [0]*N
     idxs = list(range(N))
     result = 0
