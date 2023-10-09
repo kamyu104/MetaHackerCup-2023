@@ -22,7 +22,7 @@ def bohemian_rapsody():
             cnt[idx] += x
             cnt2[cnt[idx]] += 1
 
-        def get_ans():  # Time: sqrt(N)
+        def get_ans():  # Time: O(sqrt(N))
             ans = remain = -cnt2[0]
             for i in range(1, len(cnt2)):
                 if i >= ans:
