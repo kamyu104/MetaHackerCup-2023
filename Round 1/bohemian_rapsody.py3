@@ -18,13 +18,13 @@ def bohemian_rapsody():
     def mo_s_algorithm():  # Time: O(QlogQ + (N + Q) * sqrt(N))
         def add(i):
             idx = lookup[idxs[i]]
+            suffix[cnt[idx]] += 1
             cnt[idx] += 1
-            suffix[cnt[idx]-1] += 1
 
         def remove(i):
             idx = lookup[idxs[i]]
-            suffix[cnt[idx]-1] -= 1
             cnt[idx] -= 1
+            suffix[cnt[idx]] -= 1
 
         def get_ans():  # Time: O(sqrt(N))
             ans = suffix[0]
