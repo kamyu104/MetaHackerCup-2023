@@ -65,8 +65,7 @@ def bohemian_rapsody():
     trie = []
     new_node()
     alives = list(range(N))
-    lookup = [0]*N
-    suffix = [0]*N
+    lookup, suffix = [0]*N, [0]*N
     result = 0
     for k, group in enumerate(groups):
         alives = [i for i in alives if k < len(W[i])]
