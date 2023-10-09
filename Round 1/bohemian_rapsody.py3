@@ -24,11 +24,11 @@ def bohemian_rapsody():
 
         def get_ans():  # Time: sqrt(N)
             ans = curr = -cnt2[0]
-            i = 1
-            while i < ans:
+            for i in range(1, len(cnt2)):
+                if i >= ans:
+                    break
                 curr -= cnt2[i]
                 ans = min(ans, curr+i)
-                i += 1
             return ans
 
         block_size = int(len(idxs)**0.5)
