@@ -15,14 +15,14 @@ def bohemian_rapsody():
         return len(trie)-1
 
     # reference: https://cp-algorithms.com/data_structures/sqrt_decomposition.html
-    def mo_s_algorithm(idxs, queries):  # Time: O(QlogQ + (N + Q) * sqrt(N))
+    def mo_s_algorithm(alives, queries):  # Time: O(QlogQ + (N + Q) * sqrt(N))
         def add(i):
-            idx = lookup[idxs[i]]
+            idx = lookup[alives[i]]
             suffix[cnt[idx]] += 1
             cnt[idx] += 1
 
         def remove(i):
-            idx = lookup[idxs[i]]
+            idx = lookup[alives[i]]
             cnt[idx] -= 1
             suffix[cnt[idx]] -= 1
 
@@ -35,7 +35,7 @@ def bohemian_rapsody():
                 ans = min(ans, i+suffix[(i-1)+1])
             return ans
 
-        block_size = int(len(idxs)**0.5)
+        block_size = int(len(alives)**0.5)
         queries.sort(key=lambda x: (x[0]//block_size, x[1]))  # Time: O(QlogQ)
         left, right = 0, -1
         for l, r in queries:  # Time: O((N + Q) * sqrt(N))
@@ -73,17 +73,16 @@ def bohemian_rapsody():
             if not trie[idx][c]:
                 trie[idx][c] = new_node()
             idx = trie[idx][c]
-
+    alives = list(range(N))
+    lookup = [0]*N
     cnt = [0]*len(trie)
     suffix = [0]*N
-    lookup = [0]*N
-    idxs = list(range(N))
     result = 0
     for k, group in enumerate(groups):
-        idxs = [i for i in idxs if k < len(W[i])]
-        for i in idxs:
+        alives = [i for i in alives if k < len(W[i])]
+        for i in alives:
             lookup[i] = trie[lookup[i]][W[i][k]]
-        result += sum(ans for ans in mo_s_algorithm(idxs, [(bisect_left(idxs, l), bisect_right(idxs, r)-1) for l, r in group]))
+        result += sum(ans for ans in mo_s_algorithm(alives, [(bisect_left(alives, l), bisect_right(alives, r)-1) for l, r in group]))
     return result
 
 for case in range(int(input())):
