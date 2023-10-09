@@ -32,7 +32,7 @@ def bohemian_rapsody():
                 if i >= ans:
                     break
                 assert((i+1)*i//2 <= len(idxs))
-                ans = min(ans, i+suffix[i])
+                ans = min(ans, i+suffix[(i-1)+1])
             return ans
 
         block_size = int(len(idxs)**0.5)
