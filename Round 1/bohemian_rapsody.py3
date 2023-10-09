@@ -16,17 +16,17 @@ def bohemian_rapsody():
 
     # reference: https://cp-algorithms.com/data_structures/sqrt_decomposition.html
     def mo_s_algorithm(a, queries):  # Time: O(QlogQ + (N + Q) * sqrt(N))
-        def add(i):
+        def add(i):  # Time: O(F) = O(1)
             idx = lookup[a[i]]
             suffix[cnt[idx]] += 1
             cnt[idx] += 1
 
-        def remove(i):
+        def remove(i):  # Time: O(F) = O(1)
             idx = lookup[a[i]]
             cnt[idx] -= 1
             suffix[cnt[idx]] -= 1
 
-        def get_ans(l):  # Time: O(sqrt(N))
+        def get_ans(l):  # Time: O(A) = O(sqrt(N))
             ans = suffix[0]
             for i in range(1, len(suffix)):
                 if i >= ans:
@@ -35,10 +35,10 @@ def bohemian_rapsody():
                 ans = min(ans, i+suffix[(i-1)+1])
             return ans
 
-        block_size = int(len(a)**0.5)
+        block_size = int(len(a)**0.5)  # O(S) = O(sqrt(N))
         queries.sort(key=lambda x: (x[0]//block_size, x[1]))  # Time: O(QlogQ)
         left, right = 0, -1
-        for l, r in queries:  # Time: O((N + Q) * sqrt(N))
+        for l, r in queries:  # Time: O((N / S) * N * F + S * Q * F + Q * A) = O((N + Q) * sqrt(N)), O(S) = O(sqrt(N)), O(F) = O(1), O(A) = O(sqrt(N))
             while left > l:
                 left -= 1
                 add(left)
