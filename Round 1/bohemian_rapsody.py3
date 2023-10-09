@@ -57,13 +57,11 @@ def bohemian_rapsody():
     W = [list(map(lambda x: ord(x)-ord('a'), input()))[::-1] for _ in range(N)]
     Q = int(input())
     A_B_K = [map(lambda x: int(x)-1, input().split()) for _ in range(Q)]
-
     max_l = max(len(w) for w in W)
     groups = [[] for _ in range(max_l)]
     for A, B, K in A_B_K:
         if K < len(groups):
             groups[K].append((A, B))
-
     trie = []
     new_node()
     alives = list(range(N))
