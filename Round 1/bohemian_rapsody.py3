@@ -52,6 +52,8 @@ def bohemian_rapsody():
                 remove(right)
                 right -= 1
             yield get_ans(right-left+1)
+        for i in range(left, right+1):
+            remove(i)
 
     N = int(input())
     W = [list(map(lambda x: ord(x)-ord('a'), input()))[::-1] for _ in range(N)]
@@ -85,8 +87,6 @@ def bohemian_rapsody():
             lookup[i] = trie[lookup[i]][W[i][k]]
             new_idxs.append(i)
         idxs = new_idxs
-        for i in range(len(idxs)):
-            suffix[i] = 0
         queries = [(bisect_left(idxs, l), bisect_right(idxs, r)-1) for l, r in queries]
         result += sum(ans for ans in mo_s_algorithm())
     return result
