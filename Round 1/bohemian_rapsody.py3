@@ -11,8 +11,8 @@ from bisect import bisect_left, bisect_right
 
 def bohemian_rapsody():
     def new_node():
-        trie.append([-1]*26)
-        return len(trie)-1
+        curr.append([-1]*26)
+        return len(curr)-1
 
     # reference: https://cp-algorithms.com/data_structures/sqrt_decomposition.html
     def mo_s_algorithm(a, queries):  # Time: O(QlogQ + (N + Q) * sqrt(N))
@@ -62,19 +62,19 @@ def bohemian_rapsody():
     for A, B, K in A_B_K:
         if K < len(groups):
             groups[K].append((A, B))
-    trie = []
+    curr = []
     new_node()
     alives = list(range(N))
     lookup, suffix = [0]*N, [0]*N
     result = 0
     for k, group in enumerate(groups):
         alives = [i for i in alives if k < len(W[i])]
-        prev, trie = trie, []
+        prev, curr = curr, []
         for i in alives:
             if prev[lookup[i]][W[i][k]] == -1:
                 prev[lookup[i]][W[i][k]] = new_node()
             lookup[i] = prev[lookup[i]][W[i][k]]
-        cnt = [0]*len(trie)
+        cnt = [0]*len(curr)
         for i in range(len(alives)):
             suffix[i] = 0
         qs = [(bisect_left(alives, l), bisect_right(alives, r)-1) for l, r in group]  # Time: O(QlogN)
