@@ -4,14 +4,14 @@
 # https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-1/problems/E
 #
 # Time:  O(QlogN + QlogQ + (L + Q) * sqrt(N)), L = sum(len(w) for w in W), pass in PyPy3 but Python3
-# Space: O(Q + T), T is the size of trie
+# Space: O(Q + N)
 #
 
 from bisect import bisect_left, bisect_right
 
 def bohemian_rapsody():
     def new_node():
-        trie.append([0]*26)
+        trie.append([-1]*26)
         return len(trie)-1
 
     # reference: https://cp-algorithms.com/data_structures/sqrt_decomposition.html
@@ -52,8 +52,6 @@ def bohemian_rapsody():
                 remove(right)
                 right -= 1
             yield get_ans(right-left+1)
-        for i in range(left, right+1):
-            remove(i)
 
     N = int(input())
     W = [list(map(lambda x: ord(x)-ord('a'), input()))[::-1] for _ in range(N)]
@@ -66,22 +64,22 @@ def bohemian_rapsody():
         if K < len(groups):
             groups[K].append((A, B))
 
-    trie = [[0]*26]
-    for w in W:
-        idx = 0
-        for c in w:
-            if not trie[idx][c]:
-                trie[idx][c] = new_node()
-            idx = trie[idx][c]
+    trie = []
+    new_node()
     alives = list(range(N))
     lookup = [0]*N
-    cnt = [0]*len(trie)
     suffix = [0]*N
     result = 0
     for k, group in enumerate(groups):
         alives = [i for i in alives if k < len(W[i])]
+        prev, trie = trie, []
         for i in alives:
-            lookup[i] = trie[lookup[i]][W[i][k]]
+            if prev[lookup[i]][W[i][k]] == -1:
+                prev[lookup[i]][W[i][k]] = new_node()
+            lookup[i] = prev[lookup[i]][W[i][k]]
+        cnt = [0]*len(trie)
+        for i in range(len(alives)):
+            suffix[i] = 0
         qs = [(bisect_left(alives, l), bisect_right(alives, r)-1) for l, r in group]  # Time: O(QlogN)
         result += sum(ans for ans in mo_s_algorithm(alives, qs))
     return result
