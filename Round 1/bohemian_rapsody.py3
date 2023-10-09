@@ -71,6 +71,7 @@ def bohemian_rapsody():
             if not trie[idx][c]:
                 trie[idx][c] = new_node()
             idx = trie[idx][c]
+
     cnt = [0]*len(trie)
     cnt2 = [0]*(N+1)
     lookup = [0]*N
