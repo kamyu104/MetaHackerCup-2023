@@ -15,7 +15,7 @@ def bohemian_rapsody():
         return len(trie)-1
 
     # reference: https://cp-algorithms.com/data_structures/sqrt_decomposition.html
-    def mo_algorithm():  # Time: O(QlogQ + (N + Q) * sqrt(N))
+    def mo_s_algorithm():  # Time: O(QlogQ + (N + Q) * sqrt(N))
         def add(i, x):
             idx = lookup[idxs[i]]
             cnt2[cnt[idx]] -= 1
@@ -86,7 +86,7 @@ def bohemian_rapsody():
                 new_idxs.append(i)
         idxs = new_idxs
         queries = [(bisect_left(idxs, l), bisect_right(idxs, r)-1) for l, r in queries]
-        result += sum(ans for ans in mo_algorithm())
+        result += sum(ans for ans in mo_s_algorithm())
     return result
     
 for case in range(int(input())):
