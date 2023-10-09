@@ -19,20 +19,20 @@ def bohemian_rapsody():
         def add(i):
             idx = lookup[idxs[i]]
             cnt[idx] += 1
-            suffix[cnt[idx]] += 1
+            suffix[cnt[idx]-1] += 1
 
         def remove(i):
             idx = lookup[idxs[i]]
-            suffix[cnt[idx]] -= 1
+            suffix[cnt[idx]-1] -= 1
             cnt[idx] -= 1
 
         def get_ans():  # Time: O(sqrt(N))
-            ans = suffix[1]
+            ans = suffix[0]
             for i in range(1, len(suffix)):
                 if i >= ans:
                     break
                 assert((i+1)*i//2 <= len(idxs))
-                ans = min(ans, i+suffix[i+1])
+                ans = min(ans, i+suffix[i])
             return ans
 
         block_size = int(len(idxs)**0.5)
@@ -52,8 +52,6 @@ def bohemian_rapsody():
                 remove(right)
                 right -= 1
             yield get_ans()
-        for i in range(left, right+1):
-            remove(i)
 
     N = int(input())
     W = [list(map(lambda x: ord(x)-ord('a'), input()))[::-1] for _ in range(N)]
@@ -88,6 +86,8 @@ def bohemian_rapsody():
             if lookup[i]:
                 new_idxs.append(i)
         idxs = new_idxs
+        for i in range(len(idxs)):
+            suffix[i] = 0
         queries = [(bisect_left(idxs, l), bisect_right(idxs, r)-1) for l, r in queries]
         result += sum(ans for ans in mo_s_algorithm())
     return result
