@@ -15,7 +15,7 @@ def bohemian_rapsody():
         return len(trie)-1
 
     # reference: https://cp-algorithms.com/data_structures/sqrt_decomposition.html
-    def mo_s_algorithm():  # Time: O(QlogQ + (N + Q) * sqrt(N))
+    def mo_s_algorithm(idxs, queries):  # Time: O(QlogQ + (N + Q) * sqrt(N))
         def add(i):
             idx = lookup[idxs[i]]
             suffix[cnt[idx]] += 1
@@ -61,10 +61,10 @@ def bohemian_rapsody():
     A_B_K = [map(lambda x: int(x)-1, input().split()) for _ in range(Q)]
 
     max_l = max(len(w) for w in W)
-    qs = [[] for _ in range(max_l)]
+    groups = [[] for _ in range(max_l)]
     for A, B, K in A_B_K:
-        if K < len(qs):
-            qs[K].append((A, B))
+        if K < len(groups):
+            groups[K].append((A, B))
 
     trie = [[0]*26]
     for w in W:
@@ -79,16 +79,11 @@ def bohemian_rapsody():
     lookup = [0]*N
     idxs = list(range(N))
     result = 0
-    for k, queries in enumerate(qs):
-        new_idxs = []
+    for k, group in enumerate(groups):
+        idxs = [i for i in idxs if k < len(W[i])]
         for i in idxs:
-            if not k < len(W[i]):
-                continue
             lookup[i] = trie[lookup[i]][W[i][k]]
-            new_idxs.append(i)
-        idxs = new_idxs
-        queries = [(bisect_left(idxs, l), bisect_right(idxs, r)-1) for l, r in queries]
-        result += sum(ans for ans in mo_s_algorithm())
+        result += sum(ans for ans in mo_s_algorithm(idxs, [(bisect_left(idxs, l), bisect_right(idxs, r)-1) for l, r in group]))
     return result
 
 for case in range(int(input())):
