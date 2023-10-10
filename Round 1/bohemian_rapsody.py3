@@ -35,7 +35,7 @@ def bohemian_rapsody():
                 ans = min(ans, i+suffix[(i-1)+1])
             return ans
 
-        assert(len(a) >= 1)
+        assert(a and queries)
         block_size = int(len(a)**0.5)  # O(S) = O(sqrt(N))
         queries.sort(key=lambda x: (x[0]//block_size, x[1]))  # Time: O(QlogQ)
         left, right = 0, -1
