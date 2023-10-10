@@ -3,7 +3,7 @@
 # Meta Hacker Cup 2023 Round 1 - Problem E. Bohemian Rap-sody
 # https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-1/problems/E
 #
-# Time:  O(QlogN + QlogQ + (L + Q) * sqrt(N)), L = sum(len(w) for w in W), pass in PyPy3 but Python3
+# Time:  O(QlogN + QlogQ + (L + Q) * sqrt(N)), L = sum(min(len(w), MAX_K) for w in W), pass in PyPy3 but Python3
 # Space: O(Q + N)
 #
 
@@ -58,7 +58,8 @@ def bohemian_rapsody():
     Q = int(input())
     A_B_K = [list(map(lambda x: int(x)-1, input().split())) for _ in range(Q)]
     max_l = max(len(w) for w in W)
-    groups = [[] for _ in range(max_l)]
+    max_k = max(K for _, _, K in A_B_K)+1
+    groups = [[] for _ in range(min(max_l, max_k))]
     for A, B, K in A_B_K:
         if K < len(groups):
             groups[K].append((A, B))
