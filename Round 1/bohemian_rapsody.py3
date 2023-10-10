@@ -75,6 +75,8 @@ def bohemian_rapsody():
             if prev[lookup[i]][W[i][k]] is None:
                 prev[lookup[i]][W[i][k]] = new_node()
             lookup[i] = prev[lookup[i]][W[i][k]]
+        if not group:
+            continue
         cnt = [0]*len(curr)
         for i in range(len(alives)):
             suffix[i] = 0
