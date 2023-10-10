@@ -18,21 +18,21 @@ def bohemian_rapsody():
     def mo_s_algorithm(a, queries):  # Time: O(QlogQ + (N + Q) * sqrt(N))
         def add(i):  # Time: O(F) = O(1)
             idx = lookup[a[i]]
-            cnt[idx] += 1
             suffix[cnt[idx]] += 1
+            cnt[idx] += 1
 
         def remove(i):  # Time: O(F) = O(1)
             idx = lookup[a[i]]
-            suffix[cnt[idx]] -= 1
             cnt[idx] -= 1
+            suffix[cnt[idx]] -= 1
 
         def get_ans(l):  # Time: O(A) = O(sqrt(N))
             ans = l
-            for i in range(len(suffix)-1):
+            for i in range(len(suffix)):
                 if i >= ans:
                     break
                 assert((i+1)*i//2 <= l)
-                ans = min(ans, i+suffix[i+1])
+                ans = min(ans, i+suffix[i])
             return ans
 
         block_size = int(len(a)**0.5)+1  # O(S) = O(sqrt(N))
@@ -66,7 +66,7 @@ def bohemian_rapsody():
     curr = []
     new_node()
     alives = list(range(N))
-    lookup, suffix = [0]*N, [0]*(N+1)
+    lookup, suffix = [0]*N, [0]*N
     result = 0
     for k, group in enumerate(groups):
         alives = [i for i in alives if k < len(W[i])]
@@ -79,7 +79,7 @@ def bohemian_rapsody():
             continue
         cnt = [0]*len(curr)
         for i in range(len(alives)):
-            suffix[i+1] = 0
+            suffix[i] = 0
         qs = [(bisect_left(alives, l), bisect_right(alives, r)-1) for l, r in group]  # Time: O(QlogN)
         result += sum(ans for ans in mo_s_algorithm(alives, qs))
     return result
