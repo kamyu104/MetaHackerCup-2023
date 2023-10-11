@@ -12,7 +12,7 @@ def sum_41_chapter_1():
         if total == 0:
             return product == 1
         for i in range(result[-1] if result else 1, total+1):
-            if i > total-i != 0 or product%i:
+            if product%i or i > total-i != 0:
                 continue
             result.append(i)
             if backtracking(total-i, product//i):

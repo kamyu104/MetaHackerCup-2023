@@ -15,7 +15,7 @@ def sum_41_chapter_2():
                     result[:] = curr
             return
         for i in range(curr[-1] if curr else 1, total+1):
-            if i > total-i != 0 or product%i:
+            if product%i or i > total-i != 0:
                 continue
             curr.append(i)
             backtracking(total-i, product//i, curr)
