@@ -7,12 +7,14 @@
 # Space: O(K)
 #
 
+from itertools import chain
+
 def sum_41_chapter_1():
     def backtracking(total, product):
         if total == 0:
             return product == 1
-        for i in range(result[-1] if result else 1, total+1):
-            if product%i or i > total-i != 0:
+        for i in chain(range(result[-1] if result else 1, total//2+1), [total]):
+            if product%i:
                 continue
             result.append(i)
             if backtracking(total-i, product//i):

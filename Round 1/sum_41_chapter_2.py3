@@ -7,6 +7,8 @@
 # Space: O(K)
 #
 
+from itertools import chain
+
 def sum_41_chapter_2():
     def backtracking(total, product, curr):
         if total == 0:
@@ -14,8 +16,8 @@ def sum_41_chapter_2():
                 if not result or len(result) > len(curr):
                     result[:] = curr
             return
-        for i in range(curr[-1] if curr else 1, total+1):
-            if product%i or i > total-i != 0:
+        for i in chain(range(curr[-1] if curr else 1, total//2+1), [total]):
+            if product%i:
                 continue
             curr.append(i)
             backtracking(total-i, product//i, curr)
