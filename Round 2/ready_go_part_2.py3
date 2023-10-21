@@ -12,7 +12,6 @@ def ready_go_part_2():
         cnt = 0
         adj = []
         lookup[i][j] = True
-        lookup2 = set()
         q = [(i, j)]
         while q:
             new_q = []
