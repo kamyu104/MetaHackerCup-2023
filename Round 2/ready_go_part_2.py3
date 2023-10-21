@@ -10,6 +10,7 @@
 def ready_go_part_2():
     def bfs(i, j):
         cnt = 0
+        adj = []
         lookup[i][j] = True
         lookup2 = set()
         q = [(i, j)]
@@ -19,18 +20,19 @@ def ready_go_part_2():
                 cnt += 1
                 for di, dj in DIRECTIONS:
                     ni, nj = i+di, j+dj
-                    if not (0 <= ni < R and 0 <= nj < C):
+                    if not (0 <= ni < R and 0 <= nj < C and A[ni][nj] in ".W" and not lookup[ni][nj]):
                         continue
-                    if A[ni][nj] == '.':
-                        lookup2.add((ni, nj))
-                        continue
-                    if not (A[ni][nj] == 'W' and not lookup[ni][nj]):
+                    lookup[ni][nj] = True
+                    if A[ni][nj] == '.' :
+                        adj.append((ni, nj))
                         continue
                     lookup[ni][nj] = True
                     new_q.append((ni, nj))
             q = new_q
-        if len(lookup2) == 1:
-            i, j = lookup2.pop()
+        for i, j in adj:
+            lookup[i][j] = False
+        if len(adj) == 1:
+            i, j = adj[0]
             dp[i][j] += cnt
 
     R, C = list(map(int, input().split()))
