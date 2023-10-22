@@ -19,7 +19,7 @@ def ready_go_part_2():
                 cnt += 1
                 for di, dj in DIRECTIONS:
                     ni, nj = i+di, j+dj
-                    if not (0 <= ni < R and 0 <= nj < C and A[ni][nj] in ".W" and not lookup[ni][nj]):
+                    if not (0 <= ni < R and 0 <= nj < C and not lookup[ni][nj]):
                         continue
                     lookup[ni][nj] = True
                     if A[ni][nj] == '.' :
@@ -37,7 +37,7 @@ def ready_go_part_2():
     R, C = list(map(int, input().split()))
     A = [list(input()) for _ in range(R)]
     dp = [[0]*C for _ in range(R)]
-    lookup = [[False]*C for _ in range(R)]
+    lookup = [[A[i][j] == 'B' for j in range(C)] for i in range(R)]
     for i in range(R):
         for j in range(C):
             if A[i][j] == 'W' and not lookup[i][j]:
