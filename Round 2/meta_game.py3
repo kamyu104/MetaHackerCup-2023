@@ -18,7 +18,7 @@ def meta_game():
     for i in range(2*N):
         if not (get(i+(N//2-1)) < get(i+N+(N//2-1)) and get((i+1)+(N//2-1)) >= get((i+1)+N+(N//2-1))):
             continue
-        if all(get(i+j) < get(i+N+j) for j in range(N//2)) and all(get(i+j) == get((i-1)-j) for j in range(N)):
+        if all(get(i+j) < get(i+N+j) for j in range(N//2)) and all(get(i+j) == get(i+~j) for j in range(N)):
             return i
         break
     return -1
