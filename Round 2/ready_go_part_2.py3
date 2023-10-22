@@ -41,7 +41,7 @@ def ready_go_part_2():
         for j in range(C):
             if A[i][j] == 'W' and not lookup[i][j]:
                 bfs(i, j)
-    return max(max(row) for row in dp)
+    return max(x for row in dp for x in row)
 
 DIRECTIONS = ((1, 0), (0, 1), (-1, 0), (0, -1))
 for case in range(int(input())):
