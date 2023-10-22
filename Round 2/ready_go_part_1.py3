@@ -23,7 +23,6 @@ def ready_go_part_1():
                     if A[ni][nj] == '.' :
                         adj.append((ni, nj))
                         continue
-                    lookup[ni][nj] = True
                     new_q.append((ni, nj))
             q = new_q
         for i, j in adj:
