@@ -29,9 +29,7 @@ def ready_go_part_2():
             q = new_q
         for i, j in adj:
             lookup[i][j] = False
-        if len(adj) == 1:
-            i, j = adj[0]
-            dp[i][j] += cnt
+        return adj, cnt
 
     R, C = list(map(int, input().split()))
     A = [list(input()) for _ in range(R)]
@@ -39,8 +37,12 @@ def ready_go_part_2():
     lookup = [[A[i][j] == 'B' for j in range(C)] for i in range(R)]
     for i in range(R):
         for j in range(C):
-            if A[i][j] == 'W' and not lookup[i][j]:
-                bfs(i, j)
+            if not (A[i][j] == 'W' and not lookup[i][j]):
+                continue
+            adj, cnt = bfs(i, j)
+            if len(adj) == 1:
+                i, j = adj[0]
+                dp[i][j] += cnt
     return max(x for row in dp for x in row)
 
 DIRECTIONS = ((1, 0), (0, 1), (-1, 0), (0, -1))

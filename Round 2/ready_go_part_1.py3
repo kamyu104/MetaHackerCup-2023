@@ -27,12 +27,19 @@ def ready_go_part_1():
             q = new_q
         for i, j in adj:
             lookup[i][j] = False
-        return len(adj) == 1
+        return adj
 
     R, C = list(map(int, input().split()))
     A = [list(input()) for _ in range(R)]
     lookup = [[A[i][j] == 'B' for j in range(C)] for i in range(R)]
-    return "YES" if any(bfs(i, j) for i in range(R) for j in range(C) if A[i][j] == 'W' and not lookup[i][j]) else "NO"
+    for i in range(R):
+        for j in range(C):
+            if not (A[i][j] == 'W' and not lookup[i][j]):
+                continue
+            adj = bfs(i, j)
+            if len(adj) == 1:
+                return "YES"
+    return "NO"
 
 DIRECTIONS = ((1, 0), (0, 1), (-1, 0), (0, -1))
 for case in range(int(input())):
