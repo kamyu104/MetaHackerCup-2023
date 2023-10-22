@@ -18,7 +18,7 @@ def meta_game():
     if sum(get(i+(N//2-1)) < get(i+N+(N//2-1)) and get((i+1)+(N//2-1)) >= get((i+1)+N+(N//2-1)) for i in range(2*N)) != 1:
         return -1
     i = next(i for i in range(2*N) if get(i+(N//2-1)) < get(i+N+(N//2-1)) and get((i+1)+(N//2-1)) >= get((i+1)+N+(N//2-1)))
-    return i if all(get(i+j) == get(i+~j) for j in range(N)) else -1
+    return i if all(get(i+j) < get(i+N+j) for j in range(N//2)) and all(get(i+j) == get(i+~j) for j in range(N)) else -1
 
 for case in range(int(input())):
     print('Case #%d: %s' % (case+1, meta_game()))
