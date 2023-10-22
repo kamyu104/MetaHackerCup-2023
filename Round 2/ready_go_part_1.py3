@@ -20,7 +20,7 @@ def ready_go_part_1():
                     if not (0 <= ni < R and 0 <= nj < C and not lookup[ni][nj]):
                         continue
                     lookup[ni][nj] = True
-                    if A[ni][nj] == '.' :
+                    if A[ni][nj] == '.':
                         adj.append((ni, nj))
                         continue
                     new_q.append((ni, nj))
