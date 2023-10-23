@@ -3,8 +3,8 @@
 # Meta Hacker Cup 2023 Round 2 - Problem C. Wiki Race
 # https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-2/problems/C
 #
-# Time:  O(N + SUM_M * MAX_LEN_S), SUM_M = sum(M), MAX_LEN_S = O(10)
-# Space: O(N + SUM_M * MAX_LEN_S)
+# Time:  O(N + SUM_LEN_S), SUM_LEN_S = sum(len(x) for i in range(N) for x in S[i])
+# Space: O(N + SUM_LEN_S)
 #
 
 def wiki_race():
