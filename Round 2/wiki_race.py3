@@ -35,20 +35,29 @@ def wiki_race():
             step, args = stk.pop()
             if step == 1:
                 u, ret = args
-                rets = [[0] for _ in range(len(adj[u]))]
-                stk.append((2, (u, rets, ret)))
-                for i, v in enumerate(adj[u]):
-                    stk.append((1, (v, rets[i])))
+                cnt = [0]
+                stk.append((4, (u, cnt, ret)))
+                stk.append((2, (u, 0, cnt)))
             elif step == 2:
-                u, rets, ret = args
-                if not rets:
+                u, i, cnt = args
+                if i == len(adj[u]):
+                    continue
+                ret = [0]
+                stk.append((2, (u, i+1, cnt)))
+                stk.append((3, (ret, cnt)))
+                stk.append((1, (adj[u][i], ret)))
+            elif step == 3:
+                ret, cnt = args
+                cnt[0] += ret[0]
+            elif step == 4:
+                u, cnt, ret = args
+                if not adj[u]:
                     ret[0] = int(x in S[u])
                     continue
-                cnt = sum(r[0] for r in rets)
-                if cnt == len(adj[u]):
+                if cnt[0] == len(adj[u]):
                     ret[0] = 1
                     continue
-                if cnt+1 == len(adj[u]):
+                if cnt[0]+1 == len(adj[u]):
                     ret[0] = int(x in S[u])
                     continue
                 return 0
