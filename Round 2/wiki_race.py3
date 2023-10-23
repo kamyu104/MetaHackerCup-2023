@@ -48,7 +48,7 @@ def wiki_race():
                 if cnt == len(adj[u]):
                     ret[0] = 1
                     continue
-                if cnt == len(adj[u])-1:
+                if cnt+1 == len(adj[u]):
                     ret[0] = int(x in S[u])
                     continue
                 return 0
