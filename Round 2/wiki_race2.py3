@@ -3,7 +3,7 @@
 # Meta Hacker Cup 2023 Round 2 - Problem C. Wiki Race
 # https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-2/problems/C
 #
-# Time:  O(N + SUM_LEN_S + SUM_M * logL), SUM_LEN_S = sum(len(x) for i in range(N) for x in S[i]), SUM_M = sum(M), L = number of leaves
+# Time:  O(N + SUM_LEN_S), SUM_LEN_S = sum(len(x) for i in range(N) for x in S[i])
 # Space: O(N + SUM_LEN_S)
 #
 
