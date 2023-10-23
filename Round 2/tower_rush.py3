@@ -4,7 +4,7 @@
 # https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-2/problems/D
 #
 # Time:  precompute: O(MAX_N + max(MAX_D, MAX_H) * log(max(MAX_D, MAX_H)))
-#        runtime:    O(N * log(max_h) + (max_h) * log(max_h))
+#        runtime:    O(N * F + (max_h) * log(max_h)), F = max(len(DIVISORS[x]) for x in H)
 # Space: O(MAX_N + max(MAX_D, MAX_H) * log(max(MAX_D, MAX_H)))
 #
 
