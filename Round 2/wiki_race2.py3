@@ -30,20 +30,29 @@ def wiki_race():
             step, args = stk.pop()
             if step == 1:
                 u, ret = args
-                rets = [Counter() for _ in range(len(adj[u]))]
-                stk.append((2, (u, rets, ret)))
-                for i, v in enumerate(adj[u]):
-                    stk.append((1, (v, rets[i])))
+                cnt = Counter()
+                stk.append((4, (u, cnt, ret)))
+                stk.append((2, (u, 0, cnt)))
             elif step == 2:
-                u, rets, ret = args
-                cnt = Counter(x for x in S[u] if x not in lookup)
-                if not rets:
-                    for k, v in cnt.items():
+                u, i, cnt = args
+                if i == len(adj[u]):
+                    continue
+                ret = Counter()
+                stk.append((2, (u, i+1, cnt)))
+                stk.append((3, (ret, cnt)))
+                stk.append((1, (adj[u][i], ret)))
+            elif step == 3:
+                ret, cnt = args
+                for k, v in ret.items():
+                    cnt[k] += v
+            elif step == 4:
+                u, cnt, ret = args
+                if not adj[u]:
+                    for k, v in Counter(x for x in S[u] if x not in lookup).items():
                         ret[k] = v
                     continue
-                for c in rets:
-                    for k, v in c.items():
-                        cnt[k] += v
+                for k, v in Counter(x for x in S[u] if x not in lookup).items():
+                    cnt[k] += v
                 for k, v in cnt.items():
                     if k in lookup:
                         continue
