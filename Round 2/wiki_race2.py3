@@ -48,11 +48,13 @@ def wiki_race():
             elif step == 4:
                 u, cnt, ret = args
                 if not adj[u]:
-                    for k, v in Counter(x for x in S[u] if x not in lookup).items():
-                        ret[k] = v
+                    for x in S[u]:
+                        if x not in lookup:
+                            ret[x] = 1
                     continue
-                for k, v in Counter(x for x in S[u] if x not in lookup).items():
-                    cnt[k] += v
+                for x in S[u]:
+                    if x not in lookup:
+                        cnt[x] += 1
                 for k, v in cnt.items():
                     if k in lookup:
                         continue
