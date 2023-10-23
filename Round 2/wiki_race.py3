@@ -52,7 +52,7 @@ def wiki_race():
                     ret[0] = int(x in S[u])
                     continue
                 return 0
-        return ret[0] == 1
+        return int(ret[0] == 1)
 
     N = int(input())
     P = list(map(lambda x: int(x)-1, input().split()))
