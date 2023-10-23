@@ -49,10 +49,11 @@ def wiki_race():
                 for k, v in cnt.items():
                     if k in lookup:
                         continue
-                    if v >= len(adj[u]):
+                    v -= int(k in S[u])
+                    if v == len(adj[u]):
                         ret[k] = 1
-                    elif v+int(k not in S[u]) == len(adj[u]):
-                        ret[k] = 0
+                    elif v+1 == len(adj[u]):
+                        ret[k] = int(k in S[u])
                     else:
                         lookup.add(k)
         return sum(ret.values())
