@@ -36,11 +36,9 @@ def wiki_race():
                     stk.append((1, (v, rets[i])))
             elif step == 2:
                 u, rets, ret = args
-                cnt = Counter(S[u])
+                cnt = Counter(x for x in S[u] if x not in lookup)
                 if not rets:
                     for k, v in cnt.items():
-                        if k in lookup:
-                            continue
                         ret[k] = v
                     continue
                 for c in rets:
