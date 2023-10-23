@@ -62,7 +62,8 @@ def tower_rush():
             if d*i not in cnt:
                 continue
             result = (result+nCr(cnt[d*i], K)*MU[i])%MOD
-    return result*factorial(K)%MOD
+    result = (result*factorial(K))%MOD
+    return result
 
 MOD = 10**9+7
 MAX_N = 10**6
