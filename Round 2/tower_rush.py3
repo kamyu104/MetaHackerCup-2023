@@ -42,7 +42,7 @@ def tower_rush():
             cnt[d] += 1
     result = 0
     for d in DIVISORS[D]:
-        for i in range(0, len(cnt), d):
+        for i in range(d, len(cnt), d):
             result = (result+nCr(cnt[i], K)*MU[i//d])%MOD
     result = (result*FACT[K])%MOD
     return result
