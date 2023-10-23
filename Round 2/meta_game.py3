@@ -12,12 +12,15 @@ def meta_game():
         i %= 2*N
         return A[i] if i < N else B[i-N]
 
+    def check(i):
+        return get(i+(N//2-1)) < get(i+N+(N//2-1)) and not get((i+1)+(N//2-1)) < get((i+1)+N+(N//2-1))
+
     N = int(input())
     A = list(map(int, input().split()))
     B = list(map(int, input().split()))
-    if sum(get(i+(N//2-1)) < get(i+N+(N//2-1)) and not get((i+1)+(N//2-1)) < get((i+1)+N+(N//2-1)) for i in range(2*N)) != 1:
+    if sum(check(i) for i in range(2*N)) != 1:
         return -1
-    i = next(i for i in range(2*N) if get(i+(N//2-1)) < get(i+N+(N//2-1)) and not get((i+1)+(N//2-1)) < get((i+1)+N+(N//2-1)))
+    i = next(i for i in range(2*N) if check(i))
     return i if all(get(i+j) == get(i+~j) for j in range(N)) else -1
 
 for case in range(int(input())):
