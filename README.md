@@ -1,4 +1,4 @@
-# [MetaHackerCup-2023](https://www.facebook.com/hackercup/past_rounds/) ![Language](https://img.shields.io/badge/language-Python3-orange.svg) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE) ![Progress](https://img.shields.io/badge/progress-12%20%2F%2012-ff69b4.svg) ![Visitors](https://visitor-badge.laobi.icu/badge?page_id=kamyu104.metahackercup.2023)
+# [MetaHackerCup-2023](https://www.facebook.com/hackercup/past_rounds/) ![Language](https://img.shields.io/badge/language-Python3-orange.svg) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE) ![Progress](https://img.shields.io/badge/progress-17%20%2F%2017-ff69b4.svg) ![Visitors](https://visitor-badge.laobi.icu/badge?page_id=kamyu104.metahackercup.2023)
 
 * Python3 solutions of Meta Hacker Cup 2023. Solution begins with `*` means it will get TLE in the largest data set.
 * Total computation amount > `10^8`, which is not friendly for Python3 to solve in 5 ~ 15 seconds. A `6-minute` timer is set for uploading the result this year.
@@ -10,6 +10,7 @@
 * [Hacker Cup 2022](https://github.com/kamyu104/MetaHackerCup-2022)
 * [Practice Round](https://github.com/kamyu104/MetaHackerCup-2032#practice-round)
 * [Round 1](https://github.com/kamyu104/MetaHackerCup-2032#round-1)
+* [Round 2](https://github.com/kamyu104/MetaHackerCup-2032#round-2)
 
 ## Practice Round
 | # | Title | Solution | Time | Space | Difficulty | Tag | Note |
@@ -30,3 +31,12 @@
 |C2| [Back in Black (Chapter 2)](https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-1/problems/C2)| [Python3](./Round%201/back_in_black_chapter_2.py3) | _O(NlogN + Q)_ | _O(N)_ | Medium | | Number Theory, Greedy |
 |D| [Today is Gonna be a Great Day](https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-1/problems/D)| [Python3](./Round%201/today_is_gonna_be_a_great_day.py3) | _O(NlogN + QlogN)_ | _O(N)_ | Medium | | Segment Tree |
 |E| [Bohemian Rap-sody](https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-1/problems/E)| [PyPy3](./Round%201/bohemian_rapsody.py3) | _O(QlogN + QlogQ + (L + Q) * sqrt(N))_ | _O(Q + N)_ | Hard | | Trie, Offline Solution, Binary Search, Sqrt Decomposition, `Mo's Algorithm`, Freq Table, Prefix Sum, Math |
+
+## Round 2
+| # | Title | Solution | Time | Space | Difficulty | Tag | Note |
+|---| ----- | -------- | ---- | ----- | ---------- | --- | ---- |
+|A1| [Ready, Go (Part 1)](https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-2/problems/A1)| [Python3](./Round%202/ready_go_part1.py3) | _O(R * C)_ | _O(R * C)_ | Easy | | BFS |
+|A2| [Ready, Go (Part 2)](https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-2/problems/A1)| [Python3](./Round%202/ready_go_part2.py3) | _O(R * C)_ | _O(R * C)_ | Easy | | BFS, DP |
+|B| [Meta Game](https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-2/problems/B)| [Python3](./Round%202/meta_game.py3) | _O(N)_ | _O(1)_ | Easy | | Array |
+|C| [Wiki Race](https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-2/problems/C)| [Python3](./Round%201/wiki_race.py3) | _O(N + M * MAX_S)_ | _O(DFS)_ | Medium | | DFS, Freq Table, Tree DP |
+|D| [Tower Rush](https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-2/problems/D)| [Python3](./Round%201/tower_rush.py3) | precompute: _O(MAX_N + max(MAX_D, MAX_H) * log(max(MAX_D, MAX_H)))_<br>runtime: _O(N * log(max_h) + (max_h) * log(max_h))_ | _O(MAX_N + max(MAX_D, MAX_H) * log(max(MAX_D, MAX_H)))_ | Hard | | Number Theory, `Linear Sieve of Eratosthenes`, Mobius Function, Combinatorics |
