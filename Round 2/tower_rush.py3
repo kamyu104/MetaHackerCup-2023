@@ -7,8 +7,6 @@
 # Space: O(N)
 #
 
-from collections import Counter
-
 def linear_sieve_of_eratosthenes(n):  # Time: O(n), Space: O(n)
     primes = []
     spf = [-1]*(n+1)  # the smallest prime factor
@@ -29,46 +27,34 @@ def mobius(spf):  # Time: O(n), Space: O(n)
         mu[i] = 1 if i == 1 else 0 if spf[i//spf[i]] == spf[i] else -mu[i//spf[i]]
     return mu
 
-def lazy_init(n):
-    while len(INV) <= n:  # lazy initialization
-        FACT.append(FACT[-1]*len(INV) % MOD)
-        INV.append(INV[MOD%len(INV)]*(MOD-MOD//len(INV)) % MOD)  # https://cp-algorithms.com/algebra/module-inverse.html
-        INV_FACT.append(INV_FACT[-1]*INV[-1] % MOD)
-
-def factorial(n):
-    lazy_init(n)
-    return FACT[n]
-
-def inv_factorial(n):
-    lazy_init(n)
-    return INV_FACT[n]
-
 def nCr(n, k):
     if n < k:
         return 0
-    return factorial(n)*inv_factorial(k)*inv_factorial(n-k) % MOD
+    return (((FACT[n]*INV_FACT[k])%MOD)*INV_FACT[n-k])%MOD
 
 def tower_rush():
     N, K, D = list(map(int, input().split()))
     H = list(map(int, input().split()))
-    cnt = Counter()
+    cnt = [0]*(max(H)+1)
     for x in H:
         for d in DIVISORS[x]:
             cnt[d] += 1
-    max_d = max(cnt.keys())
+    max_d = next(d for d in reversed(range(len(cnt))) if cnt[d])
     result = 0
     for d in DIVISORS[D]:
         for i in range(max_d//d+1):
-            if d*i not in cnt:
-                continue
             result = (result+nCr(cnt[d*i], K)*MU[i])%MOD
-    result = (result*factorial(K))%MOD
+    result = (result*FACT[K])%MOD
     return result
 
 MOD = 10**9+7
 MAX_N = 10**6
-FACT, INV, INV_FACT = [[1]*2 for _ in range(3)]
 MU = mobius(linear_sieve_of_eratosthenes(MAX_N))
+FACT, INV, INV_FACT = [[1]*2 for _ in range(3)]
+while len(INV) <= MAX_N:
+    FACT.append(FACT[-1]*len(INV) % MOD)
+    INV.append(INV[MOD%len(INV)]*(MOD-MOD//len(INV)) % MOD)  # https://cp-algorithms.com/algebra/module-inverse.html
+    INV_FACT.append(INV_FACT[-1]*INV[-1] % MOD)
 DIVISORS = [[] for _ in range(MAX_N+1)]
 for i in range(1, MAX_N+1):
     for j in range(i, MAX_N+1, i):
