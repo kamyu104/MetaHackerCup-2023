@@ -3,8 +3,9 @@
 # Meta Hacker Cup 2023 Round 2 - Problem D. Tower Rush
 # https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-2/problems/D
 #
-# Time:  O(NlogN)
-# Space: O(N)
+# Time:  precompute: O(MAX_N + MAX_H * log(MAX_H))
+#        runtime:    O(N * log(max_h) + (max_h) * log(max_h))
+# Space: O(MAX_N + MAX_H * log(MAX_H))
 #
 
 def linear_sieve_of_eratosthenes(n):  # Time: O(n), Space: O(n)
@@ -39,25 +40,24 @@ def tower_rush():
     for x in H:
         for d in DIVISORS[x]:
             cnt[d] += 1
-    max_d = next(d for d in reversed(range(len(cnt))) if cnt[d])
     result = 0
     for d in DIVISORS[D]:
-        for i in range(max_d//d+1):
-            result = (result+nCr(cnt[d*i], K)*MU[i])%MOD
+        for i in range(0, len(cnt), d):
+            result = (result+nCr(cnt[i], K)*MU[i//d])%MOD
     result = (result*FACT[K])%MOD
     return result
 
 MOD = 10**9+7
-MAX_N = 10**6
-MU = mobius(linear_sieve_of_eratosthenes(MAX_N))
+MAX_N = MAX_H = 10**6
+MU = mobius(linear_sieve_of_eratosthenes(MAX_H))
 FACT, INV, INV_FACT = [[1]*2 for _ in range(3)]
 while len(INV) <= MAX_N:
     FACT.append(FACT[-1]*len(INV) % MOD)
     INV.append(INV[MOD%len(INV)]*(MOD-MOD//len(INV)) % MOD)  # https://cp-algorithms.com/algebra/module-inverse.html
     INV_FACT.append(INV_FACT[-1]*INV[-1] % MOD)
 DIVISORS = [[] for _ in range(MAX_N+1)]
-for i in range(1, MAX_N+1):
-    for j in range(i, MAX_N+1, i):
+for i in range(1, MAX_H+1):
+    for j in range(i, MAX_H+1, i):
         DIVISORS[j].append(i)
 for case in range(int(input())):
     print('Case #%d: %s' % (case+1, tower_rush()))
