@@ -10,16 +10,16 @@
 def similar_ships():
     def tree_diameter():
         result = 0
-        lookup = [[0]*2 for _ in range(N)]
+        dp = [[0]*2 for _ in range(N)]
         for u in reversed(range(N)):
-            result = max(result, sum(lookup[u]))
+            result = max(result, sum(dp[u]))
             if u-1 < 0:
                 break
             v = P[u-1]
-            tmp = lookup[u][0]+1
+            tmp = dp[u][0]+1
             for i in range(2):
-                if tmp > lookup[v][i]:
-                    lookup[v][i], tmp = tmp, lookup[v][i]
+                if tmp > dp[v][i]:
+                    dp[v][i], tmp = tmp, dp[v][i]
         return result
 
     N = int(input())
