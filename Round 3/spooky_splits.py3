@@ -27,41 +27,32 @@ def spooky_splits():
         return result
 
     def check(K, N):
-        def backtracking(i, total, curr):
-            if total == target:
-                sorted_partitions.append(list(curr.items()))
-                return
+        def backtracking(i, total, l, curr):
+            if l == K:
+                return True
+            fset = frozenset(curr.items()) 
+            if fset in lookup:
+                return False
+            lookup.add(fset)
             for j in range(i, len(sorted_cnt_keys)):
                 k = sorted_cnt_keys[j]
                 if not (total+k <= target):
                     break
+                if not (curr[k]+1 <= cnts[k]):
+                    continue
                 curr[k] += 1
-                if curr[k] <= cnts[k]:
-                    backtracking(j, total+k, curr)
+                if backtracking(j if (total+k)%target else 0, (total+k)%target, l+(total+k)//target, curr):
+                    return True
                 curr[k] -= 1
                 if not curr[k]:
                     del curr[k]
-
-        def backtracking2(i, total, curr):
-            if total == K:
-                return True
-            for j in range(i, len(sorted_partitions)):
-                for k, v in sorted_partitions[j]:
-                    curr[k] += v
-                if all(curr[k] <= cnts[k] for k in curr.keys()) and backtracking2(j, total+1, curr):
-                    return True
-                for k, v in sorted_partitions[j]:
-                    curr[k] -= v
-                    if not curr[k]:
-                        del curr[k]
             return False
 
         if N%K:
             return False
         target = N//K
-        sorted_partitions = []
-        backtracking(0, 0, Counter())
-        return backtracking2(0, 0, Counter())
+        lookup = set()
+        return backtracking(0, 0, 0, Counter())
 
     N, M = list(map(int, input().split()))
     A_B = [list(map(lambda x: int(x)-1, input().split())) for _ in range(M)]
