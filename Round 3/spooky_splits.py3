@@ -33,8 +33,10 @@ def spooky_splits():
                 return
             for j in range(i, len(sorted_cnt_keys)):
                 k = sorted_cnt_keys[j]
+                if not (total+k <= target):
+                    break
                 curr[k] += 1
-                if curr[k] <= cnts[k] and total+k <= target:
+                if curr[k] <= cnts[k]:
                     backtracking(j, total+k, curr)
                 curr[k] -= 1
                 if not curr[k]:
@@ -69,7 +71,7 @@ def spooky_splits():
         adj[v].append(u)
     lookup = [False]*N
     cnts = Counter(bfs(u) for u in range(N) if not lookup[u])
-    sorted_cnt_keys = [k for k in reversed(range(1, N+1)) if k in cnts]
+    sorted_cnt_keys = [k for k in range(1, N+1) if k in cnts]
     result = [K for K in range(1, N+1) if check(K, N)]
     return " ".join(map(str, result))
 
