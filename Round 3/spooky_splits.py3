@@ -1,7 +1,7 @@
 # Copyright (c) 2023 kamyu. All rights reserved.
 #
 # Meta Hacker Cup 2023 Round 3 - Problem A. Spooky Splits
-# https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-3/problems/a
+# https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-3/problems/A
 #
 # Time:  O(?)
 # Space: O(?)
