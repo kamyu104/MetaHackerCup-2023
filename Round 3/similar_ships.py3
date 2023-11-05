@@ -9,7 +9,7 @@
 
 def similar_ships():
     def bfs(u):
-        result = [0, None]
+        result = [-1, None]
         lookup = [False]*N
         lookup[u] = True
         q = [u]
@@ -33,7 +33,7 @@ def similar_ships():
         adj[v].append(u)
     _, u = bfs(0)
     d, _ = bfs(u)
-    return ((N-1+1)+(N-d+1))*d//2 % MOD
+    return (N+(N-d))*(d+1)//2 % MOD
 
 MOD = 10**9+7
 for case in range(int(input())):
