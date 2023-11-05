@@ -8,26 +8,19 @@
 #
 
 def similar_ships():
-    def iter_dfs():
+    def tree_diameter():
         result = 0
-        lookup = [-1]*N
-        stk = [(1, 0)]
-        while stk:
-            step, u = stk.pop()
-            if step == 1:
-                stk.append((2, u))
-                for v in reversed(adj[u]):
-                    stk.append((1, v))
-            elif step == 2:
-                mx1 = mx2 = 0
-                for v in adj[u]:
-                    tmp = lookup[v]
-                    if tmp > mx1:
-                        mx1, tmp = tmp, mx1
-                    if tmp > mx2:
-                        mx2, tmp = tmp, mx2
-                result = max(result, mx1+mx2)
-                lookup[u] = mx1+1
+        lookup = [1]*N
+        for u in reversed(range(N)):
+            mx1 = mx2 = 0
+            for v in adj[u]:
+                tmp = lookup[v]
+                if tmp > mx1:
+                    mx1, tmp = tmp, mx1
+                if tmp > mx2:
+                    mx2, tmp = tmp, mx2
+            result = max(result, mx1+mx2)
+            lookup[u] = mx1+1
         return result
 
     N = int(input())
@@ -35,7 +28,7 @@ def similar_ships():
     adj = [[] for _ in range(N)]
     for u, v in enumerate(P, 1):
         adj[v].append(u)
-    d = iter_dfs()
+    d = tree_diameter()
     return (N+(N-d))*(d+1)//2 % MOD
 
 MOD = 10**9+7
