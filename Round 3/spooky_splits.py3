@@ -34,7 +34,7 @@ def spooky_splits():
                 k = sorted_cnt_keys[j]
                 if not (total%target+k <= target):
                     break
-                if not (curr[k]+1 <= cnts[k]):
+                if not ((curr[k] if k in curr else 0)+1 <= cnts[k]):
                     continue
                 curr[k] += 1
                 fset = frozenset(curr.items()) 
