@@ -9,7 +9,7 @@
 
 def similar_ships():
     def bfs(u):
-        result = [-1, None]
+        result = [-1, -1]
         lookup = [False]*N
         lookup[u] = True
         q = [u]
