@@ -28,7 +28,7 @@ def spooky_splits():
 
     def check(K, N):
         def backtracking(i, total, curr):
-            if total//target == K:
+            if total == N:
                 return True
             fset = frozenset(curr.items()) 
             if fset in lookup:
