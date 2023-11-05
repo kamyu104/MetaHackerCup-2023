@@ -30,10 +30,10 @@ def spooky_splits():
         def backtracking(i, total, curr):
             if total == N:
                 return True
-            fset = frozenset(curr.items())
-            if fset in lookup:
+            fs = frozenset(curr.items())
+            if fs in lookup:
                 return False
-            lookup.add(fset)
+            lookup.add(fs)
             for j in range(i, len(sorted_cnt_keys)):
                 k = sorted_cnt_keys[j]
                 if not (total%target+k <= target):
