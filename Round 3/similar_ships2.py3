@@ -11,15 +11,16 @@ def similar_ships():
     def iter_dfs():
         result = 0
         lookup = [UNVISITED]*N
+        lookup[0] = VISITING
         stk = [(1, 0)]
         while stk:
             step, u = stk.pop()
             if step == 1:
-                if lookup[u] != UNVISITED:
-                    continue
-                lookup[u] = VISITING
                 stk.append((2, u))
                 for v in reversed(adj[u]):
+                    if lookup[v] == VISITING:
+                        continue
+                    lookup[v] = VISITING
                     stk.append((1, v))
             elif step == 2:
                 mx1 = mx2 = 0
@@ -45,6 +46,6 @@ def similar_ships():
     return (N+(N-d))*(d+1)//2 % MOD
 
 MOD = 10**9+7
-UNVISITED, VISITING = -1, -2
+UNVISITED, VISITING = -1, 0
 for case in range(int(input())):
     print('Case #%d: %s' % (case+1, similar_ships()))
