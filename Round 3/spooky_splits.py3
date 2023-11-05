@@ -51,6 +51,8 @@ def spooky_splits():
         if N%K:
             return False
         target = N//K
+        if sorted_cnt_keys[-1] > target:
+            return False
         lookup = set()
         return backtracking(0, 0, Counter())
 
