@@ -41,7 +41,7 @@ def spooky_splits():
                 if not (curr[k]+1 <= cnts[k]):
                     continue
                 curr[k] += 1
-                if backtracking(j if (total+k)%target else 0, total+k, curr):
+                if backtracking(0, total+k, curr):
                     return True
                 curr[k] -= 1
                 if not curr[k]:
