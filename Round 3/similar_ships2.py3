@@ -10,24 +10,20 @@
 def similar_ships():
     def tree_diameter():
         result = 0
-        lookup = [1]*N
+        lookup = [[0]*2 for _ in range(N)]
         for u in reversed(range(N)):
-            mx1 = mx2 = 0
-            for v in adj[u]:
-                tmp = lookup[v]
-                if tmp > mx1:
-                    mx1, tmp = tmp, mx1
-                if tmp > mx2:
-                    mx2, tmp = tmp, mx2
-            result = max(result, mx1+mx2)
-            lookup[u] = mx1+1
+            result = max(result, sum(lookup[u]))
+            if u-1 < 0:
+                break
+            v = P[u-1]
+            tmp = lookup[u][0]+1
+            for i in range(2):
+                if tmp > lookup[v][i]:
+                    lookup[v][i], tmp = tmp, lookup[v][i]
         return result
 
     N = int(input())
     P = list(map(lambda x: int(x)-1, input().split()))
-    adj = [[] for _ in range(N)]
-    for u, v in enumerate(P, 1):
-        adj[v].append(u)
     d = tree_diameter()
     return (N+(N-d))*(d+1)//2 % MOD
 
