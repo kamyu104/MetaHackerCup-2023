@@ -29,7 +29,7 @@ def spooky_splits():
     def check(K, N):
         def backtracking(i, total, curr):
             if total == target:
-                partitions.append(list(curr.items()))
+                sorted_partitions.append(list(curr.items()))
                 return
             for j in range(i, len(sorted_cnt_keys)):
                 k = sorted_cnt_keys[j]
@@ -43,12 +43,12 @@ def spooky_splits():
         def backtracking2(i, total, curr):
             if total == K:
                 return True
-            for j in range(i, len(partitions)):
-                for k, v in partitions[j]:
+            for j in range(i, len(sorted_partitions)):
+                for k, v in sorted_partitions[j]:
                     curr[k] += v
                 if all(curr[k] <= cnts[k] for k in curr.keys()) and backtracking2(j, total+1, curr):
                     return True
-                for k, v in partitions[j]:
+                for k, v in sorted_partitions[j]:
                     curr[k] -= v
                     if not curr[k]:
                         del curr[k]
@@ -57,9 +57,8 @@ def spooky_splits():
         if N%K:
             return False
         target = N//K
-        partitions = []
+        sorted_partitions = []
         backtracking(0, 0, Counter())
-        partitions.reverse()
         return backtracking2(0, 0, Counter())
 
     N, M = list(map(int, input().split()))
@@ -70,7 +69,7 @@ def spooky_splits():
         adj[v].append(u)
     lookup = [False]*N
     cnts = Counter(bfs(u) for u in range(N) if not lookup[u])
-    sorted_cnt_keys = [k for k in range(1, N+1) if k in cnts]
+    sorted_cnt_keys = [k for k in reversed(range(1, N+1)) if k in cnts]
     result = [K for K in range(1, N+1) if check(K, N)]
     return " ".join(map(str, result))
 
