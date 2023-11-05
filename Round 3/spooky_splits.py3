@@ -3,7 +3,7 @@
 # Meta Hacker Cup 2023 Round 3 - Problem A. Spooky Splits
 # https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-3/problems/A
 #
-# Time:  O(D * S * N) = O(S * NlogN), D = len(divisors(N)) = O(logN) on average, S = sum(len(partitions(i)) for i in range(1, N+1)) = 1,642,992,567 if N = 100
+# Time:  O(D * S * N) = O(S * NlogN), D = len(divisors(N)) = O(logN) on average, S = sum(len(partitions(i)) for i in range(1, N+1)) = 1,642,992,567 at most if N = 100 which is much larger than it really is
 # Space: O(S * N)
 #
 
