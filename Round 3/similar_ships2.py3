@@ -27,11 +27,11 @@ def similar_ships():
                 for v in adj[u]:
                     if lookup[v] == VISITING:
                         continue
-                    t = lookup[v]
-                    if t > mx1:
-                        mx1, t = t, mx1
-                    if t > mx2:
-                        mx2, t = t, mx2
+                    tmp = lookup[v]
+                    if tmp > mx1:
+                        mx1, tmp = tmp, mx1
+                    if tmp > mx2:
+                        mx2, tmp = tmp, mx2
                 result = max(result, mx1+mx2)
                 lookup[u] = mx1+1
         return result
