@@ -27,8 +27,8 @@ def spooky_splits():
         return result
 
     def check(K, N):
-        def backtracking(i, total, l, curr):
-            if l == K:
+        def backtracking(i, total, curr):
+            if total//target == K:
                 return True
             fset = frozenset(curr.items()) 
             if fset in lookup:
@@ -36,12 +36,12 @@ def spooky_splits():
             lookup.add(fset)
             for j in range(i, len(sorted_cnt_keys)):
                 k = sorted_cnt_keys[j]
-                if not (total+k <= target):
+                if not (total%target+k <= target):
                     break
                 if not (curr[k]+1 <= cnts[k]):
                     continue
                 curr[k] += 1
-                if backtracking(j if (total+k)%target else 0, (total+k)%target, l+(total+k)//target, curr):
+                if backtracking(j if (total+k)%target else 0, total+k, curr):
                     return True
                 curr[k] -= 1
                 if not curr[k]:
@@ -52,7 +52,7 @@ def spooky_splits():
             return False
         target = N//K
         lookup = set()
-        return backtracking(0, 0, 0, Counter())
+        return backtracking(0, 0, Counter())
 
     N, M = list(map(int, input().split()))
     A_B = [list(map(lambda x: int(x)-1, input().split())) for _ in range(M)]
