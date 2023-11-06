@@ -8,13 +8,13 @@
 #
 
 def similar_ships():
-    def bfs(u):
-        d = new_u = -1
+    def bfs(root):
+        d = -1
         lookup = [False]*N
-        lookup[u] = True
-        q = [u]
+        lookup[root] = True
+        q = [root]
         while q:
-            d, new_u = d+1, q[0]
+            d, root = d+1, q[0]
             new_q = []
             for u in q:
                 for v in adj[u]:
@@ -23,7 +23,7 @@ def similar_ships():
                     lookup[v] = True
                     new_q.append(v)
             q = new_q
-        return d, new_u
+        return d, root
 
     N = int(input())
     P = list(map(lambda x: int(x)-1, input().split()))
@@ -31,8 +31,8 @@ def similar_ships():
     for u, v in enumerate(P, 1):
         adj[u].append(v)
         adj[v].append(u)
-    _, u = bfs(0)
-    d, _ = bfs(u)
+    _, root = bfs(0)
+    d, _ = bfs(root)
     return (N+(N-d))*(d+1)//2 % MOD
 
 MOD = 10**9+7
