@@ -13,11 +13,11 @@ def similar_ships():
         dp = [[0]*2 for _ in range(N)]
         for u in reversed(range(1, N)):
             v = P[u-1]
-            tmp = dp[u][0]+1
-            if tmp > dp[v][0]:
-                dp[v][0], tmp = tmp, dp[v][0]
-            if tmp > dp[v][1]:
-                dp[v][1], tmp = tmp, dp[v][1]
+            curr = dp[u][0]+1
+            if curr > dp[v][0]:
+                dp[v][0], curr = curr, dp[v][0]
+            if curr > dp[v][1]:
+                dp[v][1], curr = curr, dp[v][1]
             result = max(result, dp[v][0]+dp[v][1])
         return result
 
