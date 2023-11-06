@@ -12,7 +12,7 @@ def hash_slinger():
     A = list(map(lambda x: int(x)%M, input().split()))
     INF = float("inf")
     dp = [INF]*M
-    dp2 = [[0]*M for _ in range(N)]
+    dp2 = [[INF]*M for _ in range(N)]
     for i in reversed(range(N)):
         d = 0
         for j in range(i, N):
