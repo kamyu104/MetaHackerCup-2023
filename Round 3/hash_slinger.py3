@@ -33,7 +33,7 @@ def hash_slinger():
             break
         lookup[u] = True
         for d in range(M):
-            if dist[u] < len(dp2):
+            if dist[u] < N:
                 dist[u^d] = min(dist[u^d], dp2[dist[u]][d]+1)
     return sum(x != INF for x in dist)
 
