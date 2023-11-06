@@ -9,12 +9,12 @@
 
 def similar_ships():
     def bfs(root):
-        d = -1
+        d = new_root = -1
         lookup = [False]*N
         lookup[root] = True
         q = [root]
         while q:
-            d, root = d+1, q[0]
+            d, new_root = d+1, q[0]
             new_q = []
             for u in q:
                 for v in adj[u]:
@@ -23,7 +23,7 @@ def similar_ships():
                     lookup[v] = True
                     new_q.append(v)
             q = new_q
-        return d, root
+        return d, new_root
 
     N = int(input())
     P = list(map(lambda x: int(x)-1, input().split()))
