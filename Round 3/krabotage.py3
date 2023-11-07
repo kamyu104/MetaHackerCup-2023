@@ -30,11 +30,11 @@ def krabotage():
                 accu = max(accu, left_from_up+right)
             accu = 0
             for nr in range(r, R):
-                left = max(dp_l[r-2][c] if r-2 >= 0 else 0, dp_l[nr-1][c-1] if nr-1 >= 0 and c-1 >= 0 else 0)
                 right_from_left = (dp_r[nr-1][c+1] if nr-1 >= r else dp_r[nr][c+1]) if c+1 < C else 0
                 right = max(right_from_left, dp_r[nr+1][c] if nr+1 < R else 0)
-                dp_v[r][c] = min(dp_v[r][c], max(accu, left+right, dp_h[nr][c-1] if c-1 >= 0 else 0))
-                accu = max(accu, left+right_from_left)
+                left = max(dp_l[r-2][c] if r-2 >= 0 else 0, dp_l[nr-1][c-1] if nr-1 >= 0 and c-1 >= 0 else 0)
+                dp_v[r][c] = min(dp_v[r][c], max(accu, right+left, dp_h[nr][c-1] if c-1 >= 0 else 0))
+                accu = max(accu, right_from_left+left)
     assert(dp_h[0][C-1] == dp_v[0][C-1])
     return dp_h[0][C-1]
 
