@@ -23,16 +23,18 @@ def krabotage():
         for c in range(C):
             accu = 0
             for nc in reversed(range(c+1)):
-                left = (dp_l[r-1][nc+1] if nc+1 <= c else dp_l[r-1][nc]) if r-1 >= 0 else 0
+                left_from_up = (dp_l[r-1][nc+1] if nc+1 <= c else dp_l[r-1][nc]) if r-1 >= 0 else 0
+                left = max(left_from_up, dp_l[r][nc-1] if nc-1 >= 0 else 0)
                 right = max(dp_r[r][c+2] if c+2 < C else 0, dp_r[r+1][nc+1] if r+1 < R and nc+1 < C else 0)
-                dp_h[r][c] = min(dp_h[r][c], max(accu, max(left, dp_l[r][nc-1] if nc-1 >= 0 else 0)+right, dp_v[r+1][nc] if r+1 < R else 0))
-                accu = max(accu, left+right)
+                dp_h[r][c] = min(dp_h[r][c], max(accu, left+right, dp_v[r+1][nc] if r+1 < R else 0))
+                accu = max(accu, left_from_up+right)
             accu = 0
             for nr in range(r, R):
                 left = max(dp_l[r-2][c] if r-2 >= 0 else 0, dp_l[nr-1][c-1] if nr-1 >= 0 and c-1 >= 0 else 0)
-                right = (dp_r[nr-1][c+1] if nr-1 >= r else dp_r[nr][c+1]) if c+1 < C else 0
-                dp_v[r][c] = min(dp_v[r][c], max(accu, left+max(right, dp_r[nr+1][c] if nr+1 < R else 0), dp_h[nr][c-1] if c-1 >= 0 else 0))
-                accu = max(accu, left+right)
+                right_from_left = (dp_r[nr-1][c+1] if nr-1 >= r else dp_r[nr][c+1]) if c+1 < C else 0
+                right = max(right_from_left, dp_r[nr+1][c] if nr+1 < R else 0)
+                dp_v[r][c] = min(dp_v[r][c], max(accu, left+right, dp_h[nr][c-1] if c-1 >= 0 else 0))
+                accu = max(accu, left+right_from_left)
     assert(dp_h[0][C-1] == dp_v[0][C-1])
     return dp_h[0][C-1]
 
