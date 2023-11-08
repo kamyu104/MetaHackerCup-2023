@@ -66,7 +66,7 @@ def double_stars():
         cnts[v][dp_down[u]+1] -= 1
         total1, total2 = (degree[u]+int(u != 0))-1, (degree[v]+int(v != 0))-1
         prev = i = j = 0
-        while total1 or total2:
+        while i < len(sorted_cnts[u]) or j < len(sorted_cnts[v]):
             if j == len(sorted_cnts[v]) or (i < len(sorted_cnts[u]) and sorted_cnts[u][i] < sorted_cnts[v][j]):
                 d = sorted_cnts[u][i]
                 result += (d-prev)*min(total1, total2)
