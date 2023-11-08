@@ -11,14 +11,13 @@ def hash_slinger():
     N, M = list(map(int, input().split()))
     A = list(map(lambda x: int(x)%M, input().split()))
     INF = float("inf")
-    dp = [INF]*M
-    dp2 = [[] for _ in range(N)]
+    dp = [[] for _ in range(N)]
     for i in reversed(range(N)):
+        dp[i] = dp[i+1][:] if i+1 < N else [INF]*M
         d = 0
         for j in range(i, N):
             d = (d+A[j])%M
-            dp[d] = min(dp[d], j)
-        dp2[i][:] = dp
+            dp[i][d] = min(dp[i][d], j)
     dist = [INF]*(1<<M.bit_length())  # Space: O(M)
     dist[0] = 0
     lookup = [False]*len(dist)
@@ -34,7 +33,7 @@ def hash_slinger():
         lookup[u] = True
         for d in range(M):
             if dist[u] < N:
-                dist[u^d] = min(dist[u^d], dp2[dist[u]][d]+1)
+                dist[u^d] = min(dist[u^d], dp[dist[u]][d]+1)
     return sum(x != INF for x in dist)
 
 for case in range(int(input())):
