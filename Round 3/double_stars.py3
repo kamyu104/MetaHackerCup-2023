@@ -3,27 +3,11 @@
 # Meta Hacker Cup 2023 Round 3 - Problem D. Double Starts
 # https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-3/problems/D
 #
-# Time:  O(N)
+# Time:  O(N * sqrt(N))
 # Space: O(N)
 #
 
-def inplace_counting_sort(idxs, cb, reverse=False):  # Time: O(n)
-    if not idxs:
-        return
-    count = [0]*(max(cb(idx) for idx in idxs)+1)
-    for idx in idxs:
-        count[cb(idx)] += 1
-    for i in range(1, len(count)):
-        count[i] += count[i-1]
-    for i in reversed(range(len(idxs))):  # inplace but unstable sort
-        while idxs[i] >= 0:
-            count[cb(idxs[i])] -= 1
-            j = count[cb(idxs[i])]
-            idxs[i], idxs[j] = idxs[j], ~idxs[i]
-    for i in range(len(idxs)):
-        idxs[i] = ~idxs[i]  # restore values
-    if reverse:  # unstable sort
-        idxs.reverse()
+from collections import Counter
 
 def double_stars():
     def bfs():
@@ -70,30 +54,39 @@ def double_stars():
     P = list(map(lambda x: int(x)-1, input().split()))
     dp_down = bfs()
     dp_up = bfs2()
-    dists = [[] for _ in range(N)]
+    cnts = [Counter() for _ in range(N)]
+    degree = [0]*N
+    degree[0] = -1
     for u, v in enumerate(P, 1):
-        dists[u].append(dp_up[u])
-        dists[v].append(dp_down[u]+1)
-    dist_pairs = [(d, u) for u in range(N) for d in dists[u]]
-    idxs = list(range(len(dist_pairs)))
-    inplace_counting_sort(idxs, lambda x: dist_pairs[x][0])
-    sorted_dists = [[] for _ in range(N)]
-    for i in reversed(idxs):
-        sorted_dists[dist_pairs[i][1]].append(dist_pairs[i][0])
+        cnts[u][dp_up[u]] += 1
+        cnts[v][dp_down[u]+1] += 1
+        degree[v] += 1
+    sorted_cnts = [sorted(cnts[u].keys()) for u in range(N)]
     result = 0
     for u, v in enumerate(P, 1):
-        found1 = found2 = False
-        i = j = 0
-        for _ in range(min(len(sorted_dists[u]), len(sorted_dists[v]))-1):
-            if not found1 and sorted_dists[u][i] == dp_up[u]:
-                found1 = True
+        cnts[u][dp_up[u]] -= 1
+        if cnts[u][dp_up[u]] == 0:
+            del cnts[u][dp_up[u]]
+        cnts[v][dp_down[u]+1] -= 1
+        if cnts[v][dp_down[u]+1] == 0:
+            del cnts[v][dp_down[u]+1]
+        total1, total2 = degree[u], degree[v]
+        prev = i = j = 0
+        while total1 or total2:
+            if j == len(sorted_cnts[v]) or (i < len(sorted_cnts[u]) and sorted_cnts[u][i] < sorted_cnts[v][j]):
+                d = sorted_cnts[u][i]
+                result += (d-prev)*min(total1, total2)
+                prev = d
+                total1 -= cnts[u][d]
                 i += 1
-            if not found2 and sorted_dists[v][j] == dp_down[u]+1:
-                found2 = True
+            else:
+                d = sorted_cnts[v][j]
+                result += (d-prev)*min(total1, total2)
+                prev = d
+                total2 -= cnts[v][d]
                 j += 1
-            result += min(sorted_dists[u][i], sorted_dists[v][j])
-            i += 1
-            j += 1
+        cnts[v][dp_down[u]+1] += 1
+        cnts[u][dp_up[u]] += 1
     return result
 
 for case in range(int(input())):
