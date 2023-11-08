@@ -63,11 +63,7 @@ def double_stars():
     result = 0
     for u, v in enumerate(P, 1):
         cnts[u][dp_up[u]] -= 1
-        if cnts[u][dp_up[u]] == 0:
-            del cnts[u][dp_up[u]]
         cnts[v][dp_down[u]+1] -= 1
-        if cnts[v][dp_down[u]+1] == 0:
-            del cnts[v][dp_down[u]+1]
         total1, total2 = (degree[u]+int(u != 0))-1, (degree[v]+int(v != 0))-1
         prev = i = j = 0
         while total1 or total2:
