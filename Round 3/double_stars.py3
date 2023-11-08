@@ -76,9 +76,9 @@ def double_stars():
         dists[v].append(dp_down[u]+1)
     dist_pairs = [(d, u) for u in range(N) for d in dists[u]]
     idxs = list(range(len(dist_pairs)))
-    inplace_counting_sort(idxs, lambda x: dist_pairs[x][0], reverse=True)
+    inplace_counting_sort(idxs, lambda x: dist_pairs[x][0])
     sorted_dists = [[] for _ in range(N)]
-    for i in idxs:
+    for i in reversed(idxs):
         sorted_dists[dist_pairs[i][1]].append(dist_pairs[i][0])
     result = 0
     for u, v in enumerate(P, 1):
