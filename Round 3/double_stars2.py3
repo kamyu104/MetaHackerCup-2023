@@ -91,7 +91,7 @@ def double_stars():
             if not found2 and sorted_dists[v][j] == dp_down[u]+1:
                 found2 = True
                 j += 1
-            if j == len(sorted_dists[v]) or (i < len(sorted_dists[u]) and sorted_dists[u][i] < sorted[v][j]):
+            if j == len(sorted_dists[v]) or (i < len(sorted_dists[u]) and sorted_dists[u][i] < sorted_dists[v][j]):
                 result += (sorted_dists[u][i]-prev)*min((len(sorted_dists[u])-1)-i, (len(sorted_dists[v])-1)-j)
                 prev = sorted_dists[u][i]
                 i += 1
