@@ -85,8 +85,8 @@ def double_stars():
     for u, v in enumerate(P, 1):
         found1 = found2 = False
         i = j = 0
-        debug_cnt += min(len(sorted_dists[u]), len(sorted_dists[v]))-1
         for _ in range(min(len(sorted_dists[u]), len(sorted_dists[v]))-1):
+            debug_cnt += 1
             if not found1 and sorted_dists[u][i] == dp_up[u]:
                 found1 = True
                 i += 1
