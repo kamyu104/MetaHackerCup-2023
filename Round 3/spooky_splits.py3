@@ -3,7 +3,7 @@
 # Meta Hacker Cup 2023 Round 3 - Problem A. Spooky Splits
 # https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-3/problems/A
 #
-# Time:  O(D * S * sqrt(N)) = O(S * sqrt(N) * logN), D = len(divisors(N)) = O(logN) on average, S = number of states <= sum(len(partitions(i)) for i in range(1, N+1)) = 1,642,992,567 if N = 100, in fact, S is much smaller than this number
+# Time:  O(D * S * sqrt(N)) = O(S * sqrt(N) * logN), D = len(divisors(N)) = O(logN) on average, S = number of visited states <= number of all possible states = sum(len(partitions(i)) for i in range(1, N+1)) = 1,642,992,567 if N = 100, in fact, S is much smaller than this number
 # Space: O(S * sqrt(N))
 #
 
