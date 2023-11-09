@@ -28,12 +28,11 @@ def hash_slinger():
                 continue
             if u == -1 or dist[u] > dist[v]:
                 u = v
-        if u == -1:
+        if u == -1 or dist[u] >= N:
             break
         lookup[u] = True
         for d in range(M):
-            if dist[u] < N:
-                dist[u^d] = min(dist[u^d], dp[dist[u]][d]+1)
+            dist[u^d] = min(dist[u^d], dp[dist[u]][d]+1)
     return sum(x != INF for x in dist)
 
 for case in range(int(input())):
