@@ -64,20 +64,20 @@ def double_stars():
     for u, v in enumerate(P, 1):
         cnts[u][dp_up[u]] -= 1
         cnts[v][dp_down[u]+1] -= 1
-        total1, total2 = degree[u]-1, degree[v]-1
+        degree1, degree2 = degree[u]-1, degree[v]-1
         prev = i = j = 0
         while i < len(sorted_cnts[u]) or j < len(sorted_cnts[v]):
             if j == len(sorted_cnts[v]) or (i < len(sorted_cnts[u]) and sorted_cnts[u][i] < sorted_cnts[v][j]):
                 d = sorted_cnts[u][i]
-                result += (d-prev)*min(total1, total2)
+                result += (d-prev)*min(degree1, degree2)
                 prev = d
-                total1 -= cnts[u][d]
+                degree1 -= cnts[u][d]
                 i += 1
             else:
                 d = sorted_cnts[v][j]
-                result += (d-prev)*min(total1, total2)
+                result += (d-prev)*min(degree1, degree2)
                 prev = d
-                total2 -= cnts[v][d]
+                degree2 -= cnts[v][d]
                 j += 1
         cnts[v][dp_down[u]+1] += 1
         cnts[u][dp_up[u]] += 1
