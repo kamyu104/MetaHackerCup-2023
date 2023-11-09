@@ -80,8 +80,8 @@ def double_stars():
     sorted_dists = [[] for _ in range(N)]
     for i in reversed(idxs):
         sorted_dists[dist_pairs[i][1]].append(dist_pairs[i][0])
-    debug_cnt = 0
     result = 0
+    debug_cnt = 0
     for u, v in enumerate(P, 1):
         found1 = found2 = False
         i = j = 0
