@@ -17,7 +17,7 @@ def double_stars():
             step, u = stk.pop()
             if step == 1:
                 stk.append((2, u))
-                for v in adj[u]:
+                for v in reversed(adj[u]):
                     stk.append((1, v))
             elif step == 2:
                 dp_down[u] = max((dp_down[v]+1 for v in adj[u]), default=0)
@@ -34,7 +34,8 @@ def double_stars():
             suffix = [-1]*(len(adj[u])+1)
             for i in reversed(range(len(adj[u]))):
                 suffix[i] = max(suffix[i+1], dp_down[adj[u][i]])
-            for i, v in enumerate(adj[u]):
+            for i in reversed(range(len(adj[u]))):
+                v = adj[u][i]
                 dp_up[v] = max(dp_up[u], prefix[i]+1, suffix[i+1]+1)+1
                 stk.append(v)
         return dp_up
