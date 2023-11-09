@@ -64,7 +64,7 @@ def spooky_splits():
         adj[v].append(u)
     lookup = [False]*N
     cnts = Counter(bfs(u) for u in range(N) if not lookup[u])
-    assert(len(cnts) < (2*N)**0.5)
+    assert(len(cnts)**2 < 2*N)
     sorted_cnt_keys = [k for k in range(1, N+1) if k in cnts]
     result = [K for K in range(1, N+1) if check(K, N)]
     return " ".join(map(str, result))
