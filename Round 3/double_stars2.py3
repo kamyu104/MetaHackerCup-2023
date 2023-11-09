@@ -27,8 +27,8 @@ def inplace_counting_sort(idxs, cb, reverse=False):  # Time: O(n)
 
 def double_stars():
     def bfs():
-        cnt = [0]*N
         dp_down = [0]*N
+        cnt = [0]*N
         q = [u for u in range(N) if cnt[u] == len(adj[u])]
         while q:
             new_q = []
