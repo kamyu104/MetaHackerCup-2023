@@ -33,7 +33,7 @@ def double_stars():
         while q:
             new_q = []
             for u in q:
-                if u == 0:
+                if u-1 < 0:
                     continue
                 v = P[u-1]
                 dp_down[v] = max(dp_down[v], dp_down[u]+1)
