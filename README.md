@@ -45,7 +45,7 @@
 ## Round 3
 | # | Title | Solution | Time | Space | Difficulty | Tag | Note |
 |---| ----- | -------- | ---- | ----- | ---------- | --- | ---- |
-|A| [Spooky Splits](https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-3/problems/A)| [Python3](./Round%203/spooky_splits.py3) | _O(S * NlogN)_ | _O(S * N)_ | Easy | | BFS, Backtracking, Hash Table |
+|A| [Spooky Splits](https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-3/problems/A)| [Python3](./Round%203/spooky_splits.py3) | _O(S * sqrt(N) * logN)_ | _O(S * sqrt(N))_ | Easy | | BFS, Backtracking, Hash Table |
 |B| [Hash Slinger](https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-3/problems/B)| [Python3](./Round%203/hash_slinger.py3) | _O(N^2 + M^2)_ | _O(N * M)_ | Medium | | DP, `Dijkstra's Algorithm` |
 |C| [Krab-otage](https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-3/problems/C)| [Python3](./Round%203/krabotage.py3) | _O(R * C * (R + C))_ | _O(R * C)_ | Hard | | DP, Prefix Sum |
 |D| [Double Stars](https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-3/problems/D)| [Python3](./Round%203/double_stars.py3) [Python3](./Round%203/double_stars2.py3) | _O(N)_ | _O(N)_ | Hard | | BFS, Prefix Sum, Tree DP, Sort, Counting Sort, Freq Table, Two Pointers, Greedy |
