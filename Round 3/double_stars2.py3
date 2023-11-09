@@ -27,11 +27,9 @@ def inplace_counting_sort(idxs, cb, reverse=False):  # Time: O(n)
 
 def double_stars():
     def bfs():
-        degree = [0]*N
-        for _, v in enumerate(P, 1):
-            degree[v] += 1
+        cnt = [0]*N
         dp_down = [0]*N
-        q = [u for u in range(N) if degree[u] == 0]
+        q = [u for u in range(N) if cnt[u] == len(adj[u])]
         while q:
             new_q = []
             for u in q:
@@ -39,16 +37,13 @@ def double_stars():
                     continue
                 v = P[u-1]
                 dp_down[v] = max(dp_down[v], dp_down[u]+1)
-                degree[v] -= 1
-                if degree[v] == 0:
+                cnt[v] += 1
+                if cnt[v] == len(adj[v]):
                     new_q.append(v)
             q = new_q
         return dp_down
 
     def bfs2():
-        adj = [[] for _ in range(N)]
-        for u, v in enumerate(P, 1):
-            adj[v].append(u)
         dp_up = [0]*N
         q = [0]
         while q:
@@ -68,6 +63,9 @@ def double_stars():
 
     N = int(input())
     P = list(map(lambda x: int(x)-1, input().split()))
+    adj = [[] for _ in range(N)]
+    for u, v in enumerate(P, 1):
+        adj[v].append(u)
     dp_down = bfs()
     dp_up = bfs2()
     dists = [[] for _ in range(N)]
