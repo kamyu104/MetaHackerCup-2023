@@ -1,4 +1,4 @@
-# [MetaHackerCup-2023](https://www.facebook.com/hackercup/past_rounds/) ![Language](https://img.shields.io/badge/language-Python3-orange.svg) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE) ![Progress](https://img.shields.io/badge/progress-22%20%2F%2022-ff69b4.svg) ![Visitors](https://visitor-badge.laobi.icu/badge?page_id=kamyu104.metahackercup.2023)
+# [MetaHackerCup-2023](https://www.facebook.com/hackercup/past_rounds/) ![Language](https://img.shields.io/badge/language-Python3-orange.svg) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE) ![Progress](https://img.shields.io/badge/progress-23%20%2F%2029-ff69b4.svg) ![Visitors](https://visitor-badge.laobi.icu/badge?page_id=kamyu104.metahackercup.2023)
 
 * Python3 solutions of Meta Hacker Cup 2023. Solution begins with `*` means it will get TLE in the largest data set.
 * Total computation amount > `10^8`, which is not friendly for Python3 to solve in 5 ~ 15 seconds. A `6-minute` timer is set for uploading the result this year.
@@ -8,11 +8,12 @@
 ## Rounds
 
 * [Hacker Cup 2022](https://github.com/kamyu104/MetaHackerCup-2022)
-* [Practice Round](https://github.com/kamyu104/MetaHackerCup-2032#practice-round)
-* [Round 1](https://github.com/kamyu104/MetaHackerCup-2032#round-1)
-* [Round 2](https://github.com/kamyu104/MetaHackerCup-2032#round-2)
-* [Round 3](https://github.com/kamyu104/MetaHackerCup-2032#round-3)
-  
+* [Practice Round](https://github.com/kamyu104/MetaHackerCup-2023#practice-round)
+* [Round 1](https://github.com/kamyu104/MetaHackerCup-2023#round-1)
+* [Round 2](https://github.com/kamyu104/MetaHackerCup-2023#round-2)
+* [Round 3](https://github.com/kamyu104/MetaHackerCup-2023#round-3)
+* [Final Round](https://github.com/kamyu104/MetaHackerCup-2023#final-round)
+
 ## Practice Round
 | # | Title | Solution | Time | Space | Difficulty | Tag | Note |
 |---| ----- | -------- | ---- | ----- | ---------- | --- | ---- |
@@ -50,3 +51,14 @@
 |C| [Krab-otage](https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-3/problems/C)| [Python3](./Round%203/krabotage.py3) | _O(R * C * (R + C))_ | _O(R * C)_ | Hard | | DP, Prefix Sum |
 |D| [Double Stars](https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-3/problems/D)| [Python3](./Round%203/double_stars.py3) [Python3](./Round%203/double_stars2.py3) | _O(N)_ | _O(N)_ | Hard | | DFS, BFS, Prefix Sum, Tree DP, Sort, Counting Sort, Freq Table, Two Pointers, Greedy |
 |E| [Similar Ships](https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-3/problems/E)| [Python3](./Round%203/similar_ships.py3) [Python3](./Round%203/similar_ships2.py3) | _O(N)_ | _O(N)_ | Hard | | Constructive Algorithms, Tree Diameter, BFS, Tree DP |
+
+## Final Round
+| # | Title | Solution | Time | Space | Difficulty | Tag | Note |
+|---| ----- | -------- | ---- | ----- | ---------- | --- | ---- |
+|A1| [Programming Paths (Part 1)](https://www.facebook.com/codingcompetitions/hacker-cup/2023/final-round/problems/A1)| | | | Easy | | |
+|A2| [Programming Paths (Part 2)](https://www.facebook.com/codingcompetitions/hacker-cup/2023/final-round/problems/A2)| | | | Hard | | |
+|B| [Transposing Tiles](https://www.facebook.com/codingcompetitions/hacker-cup/2023/final-round/problems/B)| [Python](./Final%20Round/transposing_tiles.py3) | _O(R * C * 3136)_ | _O(R * C)_ | Easy | | DP |
+|C| [Resisting Robots](https://www.facebook.com/codingcompetitions/hacker-cup/2023/final-round/problems/C)| | | | Easy | | |
+|D| [Nearly Nim](https://www.facebook.com/codingcompetitions/hacker-cup/2023/final-round/problems/D)| | | | Medium | | |
+|E| [Dealing Decks](https://www.facebook.com/codingcompetitions/hacker-cup/2023/final-round/problems/E)| | | | Medium | | |
+|F| [Cacti Cartography](https://www.facebook.com/codingcompetitions/hacker-cup/2023/final-round/problems/F)| | | | Hard | | |
