@@ -53,6 +53,8 @@
 |E| [Similar Ships](https://www.facebook.com/codingcompetitions/hacker-cup/2023/round-3/problems/E)| [Python3](./Round%203/similar_ships.py3) [Python3](./Round%203/similar_ships2.py3) | _O(N)_ | _O(N)_ | Hard | | Constructive Algorithms, Tree Diameter, BFS, Tree DP |
 
 ## Final Round
+You can relive the magic of the 2023 Hacker Cup World Finals by watching the [Live Stream Recording](https://www.facebook.com/hackercup/videos/1475477143295894) of the announcement of winners.
+
 | # | Title | Solution | Time | Space | Difficulty | Tag | Note |
 |---| ----- | -------- | ---- | ----- | ---------- | --- | ---- |
 |A1| [Programming Paths (Part 1)](https://www.facebook.com/codingcompetitions/hacker-cup/2023/final-round/problems/A1)| | | | Easy | | |
