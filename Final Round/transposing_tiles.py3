@@ -34,7 +34,7 @@ def transposing_tiles():
     R, C = list(map(int, input().split()))
     G = [list(map(int, input().split())) for _ in range(R)]
     dp = [[0]*C for _ in range(R)]
-    cnt = [0]*(MAX_SCORE_BY_ONE_MOVE+1)
+    cnt = [0]
     candidates = Counter()
     for r in range(R):
         for c in range(C):
@@ -48,7 +48,10 @@ def transposing_tiles():
                 watch(candidates, nr, nc, -1)
                 G[r][c], G[nr][nc] = G[nr][nc], G[r][c]
             watch(candidates, r, c, -1)
+            while not dp[r][c] < len(cnt):
+                cnt.append(0)
             cnt[dp[r][c]] += 1
+    assert(len(cnt) <= MAX_SCORE_BY_ONE_MOVE+1)
     max_cnt = next((i for i in reversed(range(len(cnt))) if cnt[i]), 0)
     result = 0
     for r1 in range(R):
