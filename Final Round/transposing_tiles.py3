@@ -53,14 +53,14 @@ def transposing_tiles():
     result = 0
     for r1 in range(R):
         for c1 in range(C):
-            if result == MAX_SCORE_BY_TWO_MOVES:
-                return result
             if dp[r1][c1]+MAX_SCORE_BY_ONE_MOVE <= result:
                 continue
             for r2 in range(max(r1-L, 0), min(r1+(L-1), R)):
                 for c2 in range(max(c1-L, 0), min(c1+(L-1), C)):
                     cnt[dp[r2][c2]] -= 1
             result = max(result, next((i for i in reversed(range(max_cnt+1)) if cnt[i]), 0)+dp[r1][c1])
+            if result == MAX_SCORE_BY_TWO_MOVES:
+                return result
             watch(candidates, r1, c1, +1)
             for nr1, nc1 in ((r1+1, c1), (r1, c1+1)):
                 if not check(nr1, nc1) or G[nr1][nc1] == G[r1][c1]:
@@ -76,6 +76,8 @@ def transposing_tiles():
                             G[r2][c2], G[nr2][nc2] = G[nr2][nc2], G[r2][c2]
                             watch(candidates, nr2, nc2, +1)
                             result = max(result, count(candidates))
+                            if result == MAX_SCORE_BY_TWO_MOVES:
+                                return result
                             watch(candidates, nr2, nc2, -1)
                             G[r2][c2], G[nr2][nc2] = G[nr2][nc2], G[r2][c2]
                         watch(candidates, r2, c2, -1)
