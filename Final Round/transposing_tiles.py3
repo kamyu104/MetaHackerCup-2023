@@ -33,7 +33,7 @@ def transposing_tiles():
 
     R, C = list(map(int, input().split()))
     G = [list(map(int, input().split())) for _ in range(R)]
-    score = [[0]*C for _ in range(R)]
+    dp = [[0]*C for _ in range(R)]
     cnt = [0]*(MAX_SCORE_BY_ONE_MOVE+1)
     candidates = Counter()
     for r in range(R):
@@ -44,23 +44,23 @@ def transposing_tiles():
                     continue
                 G[r][c], G[nr][nc] = G[nr][nc], G[r][c]
                 watch(candidates, nr, nc, +1)
-                score[r][c] = max(score[r][c], count(candidates))
+                dp[r][c] = max(dp[r][c], count(candidates))
                 watch(candidates, nr, nc, -1)
                 G[r][c], G[nr][nc] = G[nr][nc], G[r][c]
             watch(candidates, r, c, -1)
-            cnt[score[r][c]] += 1
+            cnt[dp[r][c]] += 1
     max_cnt = next((i for i in reversed(range(len(cnt))) if cnt[i]), 0)
     result = 0
     for r1 in range(R):
         for c1 in range(C):
             if result == MAX_SCORE_BY_TWO_MOVES:
                 return result
-            if score[r1][c1]+MAX_SCORE_BY_ONE_MOVE <= result:
+            if dp[r1][c1]+MAX_SCORE_BY_ONE_MOVE <= result:
                 continue
             for r2 in range(max(r1-L, 0), min(r1+(L-1), R)):
                 for c2 in range(max(c1-L, 0), min(c1+(L-1), C)):
-                    cnt[score[r2][c2]] -= 1
-            result = max(result, next((i for i in reversed(range(max_cnt+1)) if cnt[i]), 0)+score[r1][c1])
+                    cnt[dp[r2][c2]] -= 1
+            result = max(result, next((i for i in reversed(range(max_cnt+1)) if cnt[i]), 0)+dp[r1][c1])
             watch(candidates, r1, c1, +1)
             for nr1, nc1 in ((r1+1, c1), (r1, c1+1)):
                 if not check(nr1, nc1) or G[nr1][nc1] == G[r1][c1]:
@@ -84,7 +84,7 @@ def transposing_tiles():
             watch(candidates, r1, c1, -1)
             for r2 in range(max(r1-L, 0), min(r1+(L-1), R)):
                 for c2 in range(max(c1-L, 0), min(c1+(L-1), C)):
-                    cnt[score[r2][c2]] += 1
+                    cnt[dp[r2][c2]] += 1
     return result
 
 L = 3
