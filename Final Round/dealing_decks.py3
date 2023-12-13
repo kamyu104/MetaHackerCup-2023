@@ -32,7 +32,6 @@ class PersistentTrie(object):
             self.__nodes[self.__new_nodes[d]][(x>>(d-1))&1] = self.__new_nodes[d-1]
             self.__mins[self.__new_nodes[d]] = min(self.__mins[self.__nodes[self.__new_nodes[d]][0]], self.__mins[self.__nodes[self.__new_nodes[d]][1]])
         self.__versions[i] = self.__new_nodes[-1]
-        return self.__versions[i]
 
     def query(self, l, r, x):
         result = 0
