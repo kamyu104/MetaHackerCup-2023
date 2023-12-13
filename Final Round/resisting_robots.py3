@@ -9,12 +9,12 @@
 
 def resisting_robots():
     class UnionFind(object):  # Time: O(n * alpha(n)), Space: O(n)
-        def __init__(self, n, arr):  # modified
-            self.set = list(range(n))
-            self.rank = [0]*n
-            self.last = list(range(n))  # added
+        def __init__(self, arr):  # modified
+            self.set = list(range(len(arr)))
+            self.rank = [0]*len(arr)
+            self.last = list(range(len(arr)))  # added
             self.total = arr[:]  # added
-            self.p = [-1]*N  # added
+            self.p = [-1]*len(arr)  # added
 
         def find_set(self, x):
             stk = []
@@ -53,7 +53,7 @@ def resisting_robots():
         if rank[u] < rank[v]:
             u, v = v, u
         adj[u].append(v)
-    uf = UnionFind(N, P)
+    uf = UnionFind(P)
     for u in idxs:
         for v in adj[u]:
             uf.union_set(u, v)
