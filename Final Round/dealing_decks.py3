@@ -24,14 +24,14 @@ class PersistentTrie(object):
         return self.__length-1
 
     def add(self, i, x):
-        self.__new_nodes[-1] = self.__copy_node(self.__versions[i-1] if i-1 >= 0 else 0)
+        self.__new_nodes[self.__bit_length] = self.__copy_node(self.__versions[i-1] if i-1 >= 0 else 0)
         for d in reversed(range(1, self.__bit_length+1)):
             self.__new_nodes[d-1] = self.__copy_node(self.__nodes[self.__new_nodes[d]][(x>>(d-1))&1])
         self.__mins[self.__new_nodes[0]] = i
         for d in range(1, self.__bit_length+1):
             self.__nodes[self.__new_nodes[d]][(x>>(d-1))&1] = self.__new_nodes[d-1]
             self.__mins[self.__new_nodes[d]] = min(self.__mins[self.__nodes[self.__new_nodes[d]][0]], self.__mins[self.__nodes[self.__new_nodes[d]][1]])
-        self.__versions[i] = self.__new_nodes[-1]
+        self.__versions[i] = self.__new_nodes[self.__bit_length]
 
     def query(self, l, r, x):
         result = 0
@@ -45,7 +45,8 @@ class PersistentTrie(object):
                 result |= 1<<(d-1)
         return result
 
-    def reset(self):
+    def reset(self, N):
+        self.__bit_length = N.bit_length()
         self.__length = 1
 
 def dealing_decks():
@@ -60,7 +61,7 @@ def dealing_decks():
         A[i] = min(i, 1+Pa)
         B[i] = max(A[i], i-Pb)
         C[i] = min(i-1, Pc)
-    PT.reset()
+    PT.reset(N)
     PT.add(0, 0)
     lookup = [-1]*(N+1)
     grundy = [0]*(N+1)
