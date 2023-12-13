@@ -16,7 +16,7 @@ def nearly_nim():
     right = [0]*(N+1)
     for i in reversed(range(N)):
         right[i] = max(A[i]-right[i+1], 0)
-    return sum(max(A[i]-left[i]-right[i+1], 0) for i in range(N))
+    return sum(max(A[i]-(left[i]+right[i+1]), 0) for i in range(N))
 
 for case in range(int(input())):
     print('Case #%d: %s' % (case+1, nearly_nim()))
