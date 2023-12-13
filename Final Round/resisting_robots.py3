@@ -42,14 +42,14 @@ def resisting_robots():
 
     N, M = list(map(int, input().split()))
     P = list(map(int, input().split()))
-    roads = [list(map(lambda x: int(x)-1, input().split())) for _ in range(M)]
+    A_B = [list(map(lambda x: int(x)-1, input().split())) for _ in range(M)]
     idxs = list(range(N))
     idxs.sort(key=lambda x: P[x])
     ranks = [0]*N
     for i, x in enumerate(idxs):
         ranks[x] = i
     adj = [[] for _ in range(N)]
-    for u, v in roads:
+    for u, v in A_B:
         if ranks[u] < ranks[v]:
             u, v = v, u
         adj[u].append(v)
