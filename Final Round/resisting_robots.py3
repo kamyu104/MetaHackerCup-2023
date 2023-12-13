@@ -57,9 +57,9 @@ def resisting_robots():
     for u in idxs:
         for v in adj[u]:
             uf.union_set(u, v)
-    result = [0]*N
-    for i in reversed(range(N-1)):
-        result[idxs[i]] = max(result[uf.p[idxs[i]]], P[uf.p[idxs[i]]]-uf.total[idxs[i]])
+    result = [float("inf")]*N
+    for i in reversed(range(N)):
+        result[idxs[i]] = max(result[uf.p[idxs[i]]], P[uf.p[idxs[i]]]-uf.total[idxs[i]]) if uf.p[idxs[i]] != -1 else 0
     return sum(result)
 
 for case in range(int(input())):
