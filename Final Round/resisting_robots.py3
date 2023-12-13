@@ -35,7 +35,7 @@ def resisting_robots():
             self.set[x] = self.set[y]
             if self.rank[x] == self.rank[y]:
                 self.rank[y] += 1
-            self.last[y] = prev_x  # add
+            self.last[y] = prev_x  # added
             self.total[prev_x] += self.total[prev_y]  # added
             self.p[prev_y] = prev_x  # added
             return True
