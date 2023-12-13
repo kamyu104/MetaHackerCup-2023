@@ -3,8 +3,8 @@
 # Meta Hacker Cup 2023 Final Round - Problem C. Resisting Robots
 # https://www.facebook.com/codingcompetitions/hacker-cup/2023/final-round/problems/C
 #
-# Time:  O(NlogN)
-# Space: O(N)
+# Time:  O(NlogN + M)
+# Space: O(N + M)
 #
 
 def resisting_robots():
