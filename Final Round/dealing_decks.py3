@@ -10,16 +10,11 @@
 def dealing_decks():
     class PersistentTrie(object):
         def __init__(self, N):
-            self.__bit_length = N.bit_length()
             self.__length = 0
-            self.__new_node()
-
-        def __new_node(self):
             NODES[self.__length][0] = 0
             NODES[self.__length][1] = 0
             MINS[self.__length] = -1
             self.__length += 1
-            return self.__length-1
 
         def __copy_node(self, x):
             NODES[self.__length][0] = NODES[x][0]
@@ -29,21 +24,20 @@ def dealing_decks():
             return self.__length-1
 
         def add(self, i, x):
-            path = [0]*(self.__bit_length+1)
-            path[-1] = self.__copy_node(VERSIONS[i-1] if i-1 >= 0 else 0)
-            for d in reversed(range(1, len(path))):
-                path[d-1] = self.__copy_node(NODES[path[d]][(x>>(d-1))&1])
-            MINS[path[0]] = i
-            for d in range(1, len(path)):
-                NODES[path[d]][(x>>(d-1))&1] = path[d-1]
-                MINS[path[d]] = min(MINS[NODES[path[d]][0]], MINS[NODES[path[d]][1]])
-            VERSIONS[i] = path[-1]
+            NEW_NODES[-1] = self.__copy_node(VERSIONS[i-1] if i-1 >= 0 else 0)
+            for d in reversed(range(1, len(NEW_NODES))):
+                NEW_NODES[d-1] = self.__copy_node(NODES[NEW_NODES[d]][(x>>(d-1))&1])
+            MINS[NEW_NODES[0]] = i
+            for d in range(1, len(NEW_NODES)):
+                NODES[NEW_NODES[d]][(x>>(d-1))&1] = NEW_NODES[d-1]
+                MINS[NEW_NODES[d]] = min(MINS[NODES[NEW_NODES[d]][0]], MINS[NODES[NEW_NODES[d]][1]])
+            VERSIONS[i] = NEW_NODES[-1]
             return VERSIONS[i]
 
         def query(self, l, r, x):
             result = 0
             curr = VERSIONS[r]
-            for d in reversed(range(1, self.__bit_length+1)):
+            for d in reversed(range(1, len(NEW_NODES))):
                 u = (x>>(d-1))&1
                 if MINS[NODES[curr][u]] < l:
                     curr = NODES[curr][u]
@@ -79,9 +73,10 @@ def dealing_decks():
 
 MAX_N = 2000000
 MAX_BIT_LENGTH = MAX_N.bit_length()
-MAX_NODE_COUNT = 1+(MAX_N+1)*(MAX_BIT_LENGTH+1)
+VERSIONS = [0]*(MAX_N+1)
+NEW_NODES = [0]*(MAX_BIT_LENGTH+1)
+MAX_NODE_COUNT = len(VERSIONS)*len(NEW_NODES)+1
 NODES = [[0]*2 for _ in range(MAX_NODE_COUNT)]
 MINS = [-1]*MAX_NODE_COUNT
-VERSIONS = [0]*(MAX_N+1)
 for case in range(int(input())):
     print('Case #%d: %s' % (case+1, dealing_decks()))
