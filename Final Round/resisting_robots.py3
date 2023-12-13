@@ -11,7 +11,7 @@ def resisting_robots():
     class UnionFind(object):  # Time: O(n * alpha(n)), Space: O(n)
         def __init__(self, arr):  # modified
             self.set = list(range(len(arr)))
-            self.rank = [0]*len(arr)
+            self.ranks = [0]*len(arr)
             self.last = list(range(len(arr)))  # added
             self.total = arr[:]  # added
             self.p = [-1]*len(arr)  # added
@@ -30,11 +30,11 @@ def resisting_robots():
             if x == y:
                 return False
             prev_x, prev_y = self.last[x], self.last[y]  # added
-            if self.rank[x] > self.rank[y]:  # union by rank
+            if self.ranks[x] > self.ranks[y]:  # union by ranks
                 x, y = y, x
             self.set[x] = self.set[y]
-            if self.rank[x] == self.rank[y]:
-                self.rank[y] += 1
+            if self.ranks[x] == self.ranks[y]:
+                self.ranks[y] += 1
             self.last[y] = prev_x  # added
             self.total[prev_x] += self.total[prev_y]  # added
             self.p[prev_y] = prev_x  # added
@@ -42,15 +42,15 @@ def resisting_robots():
 
     N, M = list(map(int, input().split()))
     P = list(map(int, input().split()))
-    road = [list(map(lambda x: int(x)-1, input().split())) for _ in range(M)]
+    roads = [list(map(lambda x: int(x)-1, input().split())) for _ in range(M)]
     idxs = list(range(N))
     idxs.sort(key=lambda x: P[x])
-    rank = [0]*N
+    ranks = [0]*N
     for i, x in enumerate(idxs):
-        rank[x] = i
+        ranks[x] = i
     adj = [[] for _ in range(N)]
-    for u, v in road:
-        if rank[u] < rank[v]:
+    for u, v in roads:
+        if ranks[u] < ranks[v]:
             u, v = v, u
         adj[u].append(v)
     uf = UnionFind(P)
