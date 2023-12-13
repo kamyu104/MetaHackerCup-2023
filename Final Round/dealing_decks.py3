@@ -61,11 +61,11 @@ def dealing_decks():
         A[i] = min(i, 1+Pa)
         B[i] = max(A[i], i-Pb)
         C[i] = min(i-1, Pc)
-    PT.reset(N)
-    PT.add(0, 0)
+    result = 0
     lookup = [-1]*(N+1)
     grundy = [0]*(N+1)
-    result = 0
+    PT.reset(N)
+    PT.add(0, 0)
     for i in range(1, N+1):
         grundy[i] = PT.query(i-B[i], i-A[i], grundy[C[i]])
         assert(0 <= grundy[i] <= N)
