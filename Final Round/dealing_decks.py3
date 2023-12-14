@@ -66,13 +66,13 @@ def dealing_decks():
     grundy = [0]*(N+1)
     PT.reset(N)
     PT.add(0, 0)
-    for i in range(1, N+1):
-        grundy[i] = PT.query(i-B[i], i-A[i], grundy[C[i]])
-        assert(0 <= grundy[i] <= N)
-        if lookup[grundy[i]] == -1:
-            lookup[grundy[i]] = i
-        result += lookup[grundy[i]]
-        PT.add(i, grundy[i])
+    for k in range(1, N+1):
+        grundy[k] = PT.query(k-B[k], k-A[k], grundy[C[k]])
+        assert(0 <= grundy[k] <= N)
+        if lookup[grundy[k]] == -1:
+            lookup[grundy[k]] = k
+        result += lookup[grundy[k]]
+        PT.add(k, grundy[k])
     return result
 
 MAX_N = 2000000
