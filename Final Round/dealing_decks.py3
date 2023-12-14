@@ -23,7 +23,7 @@ class PersistentTrie(object):
         self.__length += 1
         return self.__length-1
 
-    def add(self, i, x):
+    def add(self, x, i):
         self.__new_nodes[self.__bit_length] = self.__copy_node(self.__versions[i-1] if i-1 >= 0 else 0)
         for d in reversed(range(1, self.__bit_length+1)):
             self.__new_nodes[d-1] = self.__copy_node(self.__nodes[self.__new_nodes[d]][(x>>(d-1))&1])
@@ -33,7 +33,7 @@ class PersistentTrie(object):
             self.__mins[self.__new_nodes[d]] = min(self.__mins[self.__nodes[self.__new_nodes[d]][0]], self.__mins[self.__nodes[self.__new_nodes[d]][1]])
         self.__versions[i] = self.__new_nodes[self.__bit_length]
 
-    def query(self, l, r, x):
+    def query(self, x, l, r):
         result = 0
         curr = self.__versions[r]
         for d in reversed(range(1, self.__bit_length+1)):
@@ -67,12 +67,12 @@ def dealing_decks():
     PT.reset(N)
     PT.add(0, 0)
     for k in range(1, N+1):
-        grundy[k] = PT.query(k-B[k], k-A[k], grundy[C[k]])
+        grundy[k] = PT.query(grundy[C[k]], k-B[k], k-A[k])
         assert(0 <= grundy[k] <= N)
         if lookup[grundy[k]] == -1:
             lookup[grundy[k]] = k
         result += lookup[grundy[k]]
-        PT.add(k, grundy[k])
+        PT.add(grundy[k], k)
     return result
 
 MAX_N = 2000000
