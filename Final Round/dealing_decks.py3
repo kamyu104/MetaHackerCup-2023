@@ -33,7 +33,7 @@ class PersistentTrie(object):
             self.__mins[self.__new_nodes[d]] = min(self.__mins[self.__nodes[self.__new_nodes[d]][0]], self.__mins[self.__nodes[self.__new_nodes[d]][1]])
         self.__versions[i] = self.__new_nodes[self.__bit_length]
 
-    def query(self, x, l, r):
+    def mex(self, x, l, r):
         result = 0
         curr = self.__versions[r]
         for d in reversed(range(1, self.__bit_length+1)):
@@ -67,7 +67,7 @@ def dealing_decks():
     PT.reset(N)
     PT.add(0, 0)
     for k in range(1, N+1):
-        grundy[k] = PT.query(grundy[C[k]], k-B[k], k-A[k])
+        grundy[k] = PT.mex(grundy[C[k]], k-B[k], k-A[k])
         assert(0 <= grundy[k] <= N)
         if lookup[grundy[k]] == -1:
             lookup[grundy[k]] = k
