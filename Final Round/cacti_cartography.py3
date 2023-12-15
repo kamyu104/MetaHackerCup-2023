@@ -76,12 +76,13 @@ def cacti_cartography():
                         dp2[i][j] = min(dp2[i][j], prefix)
             for v in range(N):
                 dp3 = [INF]*(len(cycle)+1)
+                dp3[0] = dp[u][v]
                 for i in range(len(dp3)):
                     if i-1 >= 0:
-                        dp[u][v] += dp[cycle[i-1]][v]
-                    dp[u][v] = min(dp[u][v], dp3[i])
+                        dp3[i] = min(dp3[i], dp3[i-1]+dp[cycle[i-1]][v])
                     for j in range(i, len(dp3)-1):
-                        dp3[j+1] = min(dp3[j+1], dp[u][v]+dp2[i][j])
+                        dp3[j+1] = min(dp3[j+1], dp3[i]+dp2[i][j])
+                dp[u][v] = dp3[-1]
     return min(dp[0][u]+C[u] for u in range(N))
 
 INF = float("inf")
