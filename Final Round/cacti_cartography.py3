@@ -42,7 +42,7 @@ def cacti_cartography():
             idxs[u] = idx
             idx += 1
             parent[u] = p
-            for v in adj[u]:
+            for v in reversed(adj[u]):
                 if v == p:
                     continue
                 stk.append((v, u))
