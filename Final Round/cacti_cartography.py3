@@ -66,9 +66,7 @@ def cacti_cartography():
         for v in adj[u]:  # Total Time: O(N * M)
             if parent[v] != u or in_cycle[v]:
                 continue
-            mn = min(dp[v][w]+C[w] for w in range(N))
-            for w in range(N):
-                dp[u][w] += min(dp[v][w], mn)
+            cycles[u].append([v])
         for cycle in cycles[u]:  # Total Time: O(N^3)
             dp2 = [[INF]*(len(cycle)+1) for _ in range(len(cycle))]
             for v in range(N):
