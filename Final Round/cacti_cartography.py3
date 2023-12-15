@@ -25,8 +25,7 @@ def cacti_cartography():
         return dist
 
     def iter_dfs():  # Time: O(M)
-        parent, in_cycle, cycles = [-2]*N, [False]*N, [[] for _ in range(N)]
-        idxs = [-1]*N
+        idxs, parent, in_cycle, cycles = [-1]*N, [-2]*N, [False]*N, [[] for _ in range(N)]
         idx = 0
         stk = [(0, -1)]
         while stk:
