@@ -44,7 +44,7 @@ def cacti_cartography():
             idx += 1
             parent[u] = p
             for v in adj[u]:
-                if v == parent[u]:
+                if v == p:
                     continue
                 stk.append((v, u))
         return idxs, parent, in_cycle, cycles
