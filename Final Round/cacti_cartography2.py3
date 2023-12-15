@@ -34,7 +34,7 @@ def cacti_cartography():
         adj[u].append(v)
         adj[v].append(u)
     dist = [bfs(u) for u in range(N)]
-    x = LpVariable.dicts("x", list(range(N)), lowBound=0, upBound=1, cat=LpBinary)
+    x = LpVariable.dicts("x", range(N), lowBound=0, upBound=1, cat=LpBinary)
     prob = LpProblem(sense=LpMinimize)
     for u in range(N):
         prob += lpSum([x[v] for v in range(N) if dist[u][v] <= K]) >= 1
