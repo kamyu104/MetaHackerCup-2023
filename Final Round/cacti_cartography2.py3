@@ -37,8 +37,8 @@ def cacti_cartography():
     x = LpVariable.dicts("x", range(N), lowBound=0, upBound=1, cat=LpBinary)
     prob = LpProblem(sense=LpMinimize)
     for u in range(N):
-        prob += lpSum([x[v] for v in range(N) if dist[u][v] <= K]) >= 1
-    prob += lpSum([C[u]*x[u] for u in range(N)])
+        prob += lpSum(x[v] for v in range(N) if dist[u][v] <= K) >= 1
+    prob += lpSum(C[u]*x[u] for u in range(N))
     prob.solve(PULP_CBC_CMD(msg=False))
     return round(prob.objective.value())
 
