@@ -70,18 +70,18 @@ def cacti_cartography():
         for cycle in cycles[u]:  # Total Time: O(N^3)
             dp2 = [[INF]*len(cycle) for _ in range(len(cycle))]
             for v in range(N):
-                for i in range(len(dp2)):
+                for i in range(len(cycle)):
                     prefix = C[v]
-                    for j in range(i, len(dp2[i])):
+                    for j in range(i, len(cycle)):
                         prefix += dp[cycle[j]][v]
                         dp2[i][j] = min(dp2[i][j], prefix)
             for v in range(N):
                 dp3 = [INF]*(len(cycle)+1)
                 dp3[0] = dp[u][v]
-                for i in range(1, len(dp3)):
-                    dp3[i] = min(dp3[i], dp3[i-1]+dp[cycle[i-1]][v])
-                    for j in range(i):
-                        dp3[i] = min(dp3[i], dp3[j]+dp2[j][i-1])
+                for i in range(len(cycle)):
+                    dp3[i+1] = min(dp3[i+1], dp3[i]+dp[cycle[i]][v])
+                    for j in range(i+1):
+                        dp3[i+1] = min(dp3[i+1], dp3[j]+dp2[j][i])
                 dp[u][v] = dp3[-1]
     return min(dp[root][u]+C[u] for u in range(N))
 
