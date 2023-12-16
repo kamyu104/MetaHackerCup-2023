@@ -74,9 +74,13 @@ def cacti_cartography():
                 for i in range(len(cycle)):
                     prefix = C[v]
                     for j in range(len(dp2[i])):
+                        if dp[cycle[i+j]][v] == INF:
+                            break
                         prefix += dp[cycle[i+j]][v]
                         dp2[i][j] = min(dp2[i][j], prefix)
             for v in range(N):
+                if dp[u][v] == INF:
+                    continue
                 dp3 = [INF]*(len(cycle)+1)
                 dp3[0] = dp[u][v]
                 for i in range(len(cycle)):
