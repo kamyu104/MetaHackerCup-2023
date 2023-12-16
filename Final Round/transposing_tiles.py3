@@ -3,7 +3,7 @@
 # Meta Hacker Cup 2023 Final Round - Problem B. Transposing Tiles
 # https://www.facebook.com/codingcompetitions/hacker-cup/2023/final-round/problems/B
 #
-# Time:  O(R * C * 2 * (2 * L + 1)^2 * 2 * ((((L - 1) + 2) * 2)) * 2) = O(R * C * 3136)
+# Time:  O(R * C * 2 * (2 * L + 1)^2 * 2 * ((((L - 1) + 2) * 2)) * 2) = O(R * C * 3136), pass in PyPy3 but Python3
 # Space: O(R * C + ((((L - 1) + 2) * 2)) * 2) = O(R * C + 16)
 #
 
