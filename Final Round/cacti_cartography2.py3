@@ -27,9 +27,9 @@ def cacti_cartography():
         return dist
 
     N, M, K = list(map(int, input().split()))
-    assert(M <= 3*(N-1)//2)  # cactus graph, see https://mathoverflow.net/questions/425622/the-upper-bound-of-edges-of-the-generalized-cactus-graphs
     C = list(map(int, input().split()))
     A_B = [list(map(lambda x: int(x)-1, input().split())) for _ in range(M)]
+    assert(M <= 3*(N-1)//2)  # cactus graph, see https://mathoverflow.net/questions/425622/the-upper-bound-of-edges-of-the-generalized-cactus-graphs
     adj = [[] for _ in range(N)]
     for u, v in A_B:
         adj[u].append(v)
