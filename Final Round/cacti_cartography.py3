@@ -3,7 +3,7 @@
 # Meta Hacker Cup 2023 Final Round - Problem F. Cacti Cartography
 # https://www.facebook.com/codingcompetitions/hacker-cup/2023/final-round/problems/F
 #
-# Time:  O(N^3)
+# Time:  O(N^2 * L), L is the max length of a loop in the graph
 # Space: O(N^2)
 #
 
