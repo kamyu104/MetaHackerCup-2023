@@ -7,8 +7,6 @@
 # Space: O(N^2)
 #
 
-from collections import defaultdict
-
 def cacti_cartography():
     def bfs(u):  # Time: O(M)
         dist = [-1]*N
@@ -71,20 +69,20 @@ def cacti_cartography():
                 continue
             cycles[u].append([v])
         for cycle in cycles[u]:  # Total Time: O(N^2 * min(K, L))
-            dp2 = [defaultdict(lambda: INF) for _ in range(len(cycle))]
+            dp2 = [[INF]*min(2*K+1, len(cycle)-i) for i in range(len(cycle))]
             for v in range(N):
                 for i in range(len(cycle)):
                     prefix = C[v]
-                    for j in range(i, min(i+2*K+1, len(cycle))):
-                        prefix += dp[cycle[j]][v]
+                    for j in range(len(dp2[i])):
+                        prefix += dp[cycle[i+j]][v]
                         dp2[i][j] = min(dp2[i][j], prefix)
             for v in range(N):
                 dp3 = [INF]*(len(cycle)+1)
                 dp3[0] = dp[u][v]
                 for i in range(len(cycle)):
                     dp3[i+1] = min(dp3[i+1], dp3[i]+dp[cycle[i]][v])
-                    for j in range(max((i+1)-2*K-1, 0), i+1):
-                        dp3[i+1] = min(dp3[i+1], dp3[j]+dp2[j][i])
+                    for j in range(min(2*K+1, i+1)):
+                        dp3[i+1] = min(dp3[i+1], dp3[i-j]+dp2[i-j][j])
                 dp[u][v] = dp3[-1]
     return min(dp[root][u]+C[u] for u in range(N))
 
