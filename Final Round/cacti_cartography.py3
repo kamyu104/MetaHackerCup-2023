@@ -3,9 +3,11 @@
 # Meta Hacker Cup 2023 Final Round - Problem F. Cacti Cartography
 # https://www.facebook.com/codingcompetitions/hacker-cup/2023/final-round/problems/F
 #
-# Time:  O(N * M + N^2 * L) = O(N^2 * L), L is the max length of a loop in the graph
+# Time:  O(N * M + N^2 * min(K, L)) = O(N^2 * min(K, L)), L is the max length of a loop in the graph
 # Space: O(N^2)
 #
+
+from collections import defaultdict
 
 def cacti_cartography():
     def bfs(u):  # Time: O(M)
@@ -68,12 +70,12 @@ def cacti_cartography():
             if parent[v] != u or in_cycle[v]:
                 continue
             cycles[u].append([v])
-        for cycle in cycles[u]:  # Total Time: O(N^2 * L)
-            dp2 = [[INF]*len(cycle) for _ in range(len(cycle))]
+        for cycle in cycles[u]:  # Total Time: O(N^2 * min(K, L))
+            dp2 = [defaultdict(lambda: INF) for _ in range(len(cycle))]
             for v in range(N):
                 for i in range(len(cycle)):
                     prefix = C[v]
-                    for j in range(i, len(cycle)):
+                    for j in range(i, min(i+2*K+1, len(cycle))):
                         prefix += dp[cycle[j]][v]
                         dp2[i][j] = min(dp2[i][j], prefix)
             for v in range(N):
@@ -81,7 +83,7 @@ def cacti_cartography():
                 dp3[0] = dp[u][v]
                 for i in range(len(cycle)):
                     dp3[i+1] = min(dp3[i+1], dp3[i]+dp[cycle[i]][v])
-                    for j in range(i+1):
+                    for j in range(max((i+1)-2*K-1, 0), i+1):
                         dp3[i+1] = min(dp3[i+1], dp3[j]+dp2[j][i])
                 dp[u][v] = dp3[-1]
     return min(dp[root][u]+C[u] for u in range(N))
