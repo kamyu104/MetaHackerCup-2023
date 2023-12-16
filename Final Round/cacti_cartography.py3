@@ -3,7 +3,7 @@
 # Meta Hacker Cup 2023 Final Round - Problem F. Cacti Cartography
 # https://www.facebook.com/codingcompetitions/hacker-cup/2023/final-round/problems/F
 #
-# Time:  O(N * M + N^2 * L), L is the max length of a loop in the graph
+# Time:  O(N * M + N^2 * L) = O(N^2 * L), L is the max length of a loop in the graph
 # Space: O(N^2)
 #
 
@@ -49,6 +49,7 @@ def cacti_cartography():
         return idxs, parent, in_cycle, cycles
 
     N, M, K = list(map(int, input().split()))
+    assert(M <= 3*(N-1)//2)  # cactus graph, see https://mathoverflow.net/questions/425622/the-upper-bound-of-edges-of-the-generalized-cactus-graphs
     C = list(map(int, input().split()))
     A_B = [list(map(lambda x: int(x)-1, input().split())) for _ in range(M)]
     adj = [[] for _ in range(N)]

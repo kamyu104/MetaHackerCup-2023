@@ -3,7 +3,7 @@
 # Meta Hacker Cup 2023 Final Round - Problem F. Cacti Cartography
 # https://www.facebook.com/codingcompetitions/hacker-cup/2023/final-round/problems/F
 #
-# Time:  O(N * M + T), T = time complexity of simplex method
+# Time:  O(N * M + T) = O(N^2 + T), T = time complexity of simplex method
 # Space: O(N^2 + S), S = space complexity of simplex method
 #
 
@@ -27,6 +27,7 @@ def cacti_cartography():
         return dist
 
     N, M, K = list(map(int, input().split()))
+    assert(M <= 3*(N-1)//2)  # cactus graph, see https://mathoverflow.net/questions/425622/the-upper-bound-of-edges-of-the-generalized-cactus-graphs
     C = list(map(int, input().split()))
     A_B = [list(map(lambda x: int(x)-1, input().split())) for _ in range(M)]
     adj = [[] for _ in range(N)]
