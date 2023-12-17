@@ -81,7 +81,7 @@ def generate(K):
     result = [list(row) for row in G]
     d = [1]
     for l in reversed(range(K.bit_length())):
-        if K&(1<<l):
+        if (K>>l)&1:
             set_bit()
         double_plus_set_bit()
     return result
