@@ -62,7 +62,7 @@ def check(G, K):
         A, B = op(A, B, d%2, sum(cnts[r][c] for r, c in ops[d])%2)
     return A == K
 
-def generate(K):
+def build(K):
     def fill(D, cnt):
         assert(d[0] < len(DEPTHS) and d[0]%2 == D and len(DEPTHS[d[0]]) >= cnt)
         for r, c in DEPTHS[d[0]][:cnt]:
@@ -120,7 +120,7 @@ def generate(K):
 
 def programming_paths_part_1():
     K = int(input())
-    result = generate(K)
+    result = build(K)
     return "%s %s\n%s" % (R, C, "\n".join(map(lambda x: "".join(x), result)))
 
 DIRECTIONS = ((1, 0), (0, 1), (-1, 0), (0, -1))
@@ -145,6 +145,6 @@ DEPTHS, CNTS = bfs(G)
 assert(all(CNTS[r][c] == 1 for candidates in DEPTHS for r, c in candidates))
 assert(all(len(candidates) == 2 for candidates in DEPTHS[1:-1]))
 for K in range(MAX_K+1):
-    assert(check(generate(K), K))
+    assert(check(build(K), K))
 for case in range(int(input())):
     print('Case #%d: %s' % (case+1, programming_paths_part_1()))
