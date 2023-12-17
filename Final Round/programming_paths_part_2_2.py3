@@ -64,7 +64,7 @@ def check(G, K):
 
 def backtracing(K):
     result = [list(row) for row in G]
-    curr = DP[K, K]
+    curr = DP[DP2[K]]
     while curr:
         idxs, prev = curr
         for r, c in idxs:
@@ -80,6 +80,7 @@ def programming_paths_part_2():
 def precompute():
     depths, cnts = bfs(G)
     assert(all(cnts[r][c] >= 1 for candidates in depths for r, c in candidates))
+    dp2 = {0:(0, 0)}
     dp = {(0, 0):None}
     q = [(0, 0)]
     d = 0
@@ -99,10 +100,12 @@ def precompute():
                     if p != 2:
                         continue
                     idxs = depths[d][:p]
+                if new_A_B[0] not in dp2:
+                    dp2[new_A_B[0]] = new_A_B
                 dp[new_A_B] = (idxs, (A, B))
                 new_q.append(new_A_B)
         q = new_q
-    return dp
+    return dp, dp2
 
 DIRECTIONS = ((1, 0), (0, 1), (-1, 0), (0, -1))
 G = [
@@ -119,7 +122,7 @@ G = [
 ]
 R, C = len(G), len(G[0])
 MAX_K = 10000
-DP = precompute()
+DP, DP2 = precompute()
 for K in range(MAX_K+1):
     check(backtracing(K), K)
 for case in range(int(input())):
