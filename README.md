@@ -1,4 +1,4 @@
-# [MetaHackerCup-2023](https://www.facebook.com/codingcompetitions/hacker-cup) ![Language](https://img.shields.io/badge/language-Python3-orange.svg) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE) ![Progress](https://img.shields.io/badge/progress-27%20%2F%2029-ff69b4.svg) ![Visitors](https://visitor-badge.laobi.icu/badge?page_id=kamyu104.metahackercup.2023)
+# [MetaHackerCup-2023](https://www.facebook.com/codingcompetitions/hacker-cup) ![Language](https://img.shields.io/badge/language-Python3-orange.svg) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE) ![Progress](https://img.shields.io/badge/progress-29%20%2F%2029-ff69b4.svg) ![Visitors](https://visitor-badge.laobi.icu/badge?page_id=kamyu104.metahackercup.2023)
 
 * Python3 solutions of Meta Hacker Cup 2023. Solution begins with `*` means it will get TLE in the largest data set.
 * Total computation amount > `10^8`, which is not friendly for Python3 to solve in 5 ~ 15 seconds. A `6-minute` timer is set for uploading the result this year.
@@ -57,8 +57,8 @@ You can relive the magic of the 2023 Hacker Cup World Finals by watching the [Li
 
 | # | Title | Solution | Time | Space | Difficulty | Tag | Note |
 |---| ----- | -------- | ---- | ----- | ---------- | --- | ---- |
-|A1| [Programming Paths (Part 1)](https://www.facebook.com/codingcompetitions/hacker-cup/2023/final-round/problems/A1)| | | | Easy | | |
-|A2| [Programming Paths (Part 2)](https://www.facebook.com/codingcompetitions/hacker-cup/2023/final-round/problems/A2)| | | | Hard | | |
+|A1| [Programming Paths (Part 1)](https://www.facebook.com/codingcompetitions/hacker-cup/2023/final-round/problems/A1)| [Python3](./Final%20Round/programming_paths_part_1.py3) | precompute: _O(R * C + logK)_<br>runtime: _O(R * C)_ | _O(R * C)_ | Easy | | Constructive Algorithms, BFS, Bitmasks |
+|A2| [Programming Paths (Part 2)](https://www.facebook.com/codingcompetitions/hacker-cup/2023/final-round/problems/A2)| [Python3](./Final%20Round/programming_paths_part_2.py3) [Python3](./Final%20Round/programming_paths_part_2_2.py3) | precompute: _O(R * C + K^2 * D)_<br>runtime: _O(R * C)_ | _O(R * C + K^2)_ | Hard | | Constructive Algorithms, BFS, DP, Backtracing |
 |B| [Transposing Tiles](https://www.facebook.com/codingcompetitions/hacker-cup/2023/final-round/problems/B)| [PyPy3](./Final%20Round/transposing_tiles.py3) | _O(R * C * 3136)_ | _O(R * C + 16)_ | Easy | | Freq Table, DP |
 |C| [Resisting Robots](https://www.facebook.com/codingcompetitions/hacker-cup/2023/final-round/problems/C)| [Python3](./Final%20Round/resisting_robots.py3) | _O(NlogN + M)_ | _O(N + M)_ | Easy | | Sort, Union Find, DSU, DP |
 |D| [Nearly Nim](https://www.facebook.com/codingcompetitions/hacker-cup/2023/final-round/problems/D)| [Python3](./Final%20Round/nearly_nim.py3) | _O(N)_ | _O(N)_ | Medium | | Game, Prefix Sum, Greedy |
