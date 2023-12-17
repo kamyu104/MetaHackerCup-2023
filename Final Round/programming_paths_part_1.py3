@@ -74,18 +74,16 @@ def generate(K):
     def set_bit():
         fill(0, 0)
 
-    def double_plus_prev_set_bit():
+    def double_plus_set_bit():
         fill(0, 1)
         fill(1, 1)
 
     result = [list(row) for row in G]
     d = [1]
-    base = 1<<K.bit_length()
-    while base:
-        base >>= 1
-        double_plus_prev_set_bit()
-        if K&base:
+    for l in reversed(range(K.bit_length())):
+        if K&(1<<l):
             set_bit()
+        double_plus_set_bit()
     return result
 
 def programming_paths_part_1():
