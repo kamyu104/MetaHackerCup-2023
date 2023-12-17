@@ -96,11 +96,11 @@ def precompute():
                 if not (0 <= new_A <= MAX_K and 0 <= new_B <= MAX_K and (new_A, new_B, d%2) not in lookup):
                     continue
                 lookup.add((new_A, new_B, d%2))
+                new_q.append((new_A, new_B))
                 if (new_A, new_B) not in dp:
                     dp[new_A, new_B] = (depths[d][:p], (A, B))
                 if new_A not in dp2:
                     dp2[new_A] = (new_A, new_B)
-                new_q.append((new_A, new_B))
         q = new_q
     return dp, dp2
 

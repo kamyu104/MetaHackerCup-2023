@@ -102,11 +102,11 @@ def precompute():
                             continue
                         idxs = depths[d][:p]
                 lookup.add((new_A, new_B, d%2))
+                new_q.append((new_A, new_B))
                 if (new_A, new_B) not in dp:
                     dp[new_A, new_B] = (idxs, (A, B))
                 if new_A not in dp2:
                     dp2[new_A] = (new_A, new_B)
-                new_q.append((new_A, new_B))
         q = new_q
     return dp, dp2
 
