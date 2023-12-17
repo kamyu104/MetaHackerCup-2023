@@ -83,7 +83,7 @@ def precompute():
     dp = {(0, 0):None}
     dp2 = {0:(0, 0)}
     d = 0
-    lookup = {(0, 0, d)}
+    lookup = {(0, 0, d%2)}
     q = [(0, 0)]
     while q:
         d += 1
