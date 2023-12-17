@@ -67,6 +67,7 @@ def generate(K):
         P = (P-1)%2+1
         while not (d[0]%2 == D and len(DEPTHS[d[0]]) >= P):
             d[0] += 1
+            assert(d[0] < len(DEPTHS))
         for r, c in DEPTHS[d[0]][:P]:
             result[r][c] = '*'
         d[0] += 1
