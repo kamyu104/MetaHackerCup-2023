@@ -60,7 +60,7 @@ def check(G, K):
         if not ops[d]:
             continue
         A, B = op(A, B, d%2, sum(cnts[r][c] for r, c in ops[d])%2)
-    assert(A == K)
+    return A == K
 
 def generate(K):
     def fill(D, cnt):
@@ -145,6 +145,6 @@ DEPTHS, CNTS = bfs(G)
 assert(all(CNTS[r][c] == 1 for candidates in DEPTHS for r, c in candidates))
 assert(all(len(candidates) == 2 for candidates in DEPTHS[1:-1]))
 for K in range(MAX_K+1):
-    check(generate(K), K)
+    assert(check(generate(K), K))
 for case in range(int(input())):
     print('Case #%d: %s' % (case+1, programming_paths_part_1()))

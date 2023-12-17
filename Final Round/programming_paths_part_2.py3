@@ -60,7 +60,7 @@ def check(G, K):
         if not ops[d]:
             continue
         A, B = op(A, B, d%2, sum(cnts[r][c] for r, c in ops[d])%2)
-    assert(A == K)
+    return A == K
 
 def backtracing(K):
     result = [list(row) for row in G]
@@ -121,6 +121,6 @@ R, C = len(G), len(G[0])
 MAX_K = 10000
 DP, DP2 = precompute()
 for K in range(MAX_K+1):
-    check(backtracing(K), K)
+    assert(check(backtracing(K), K))
 for case in range(int(input())):
     print('Case #%d: %s' % (case+1, programming_paths_part_2()))
