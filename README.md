@@ -57,7 +57,7 @@ You can relive the magic of the 2023 Hacker Cup World Finals by watching the [Li
 
 | # | Title | Solution | Time | Space | Difficulty | Tag | Note |
 |---| ----- | -------- | ---- | ----- | ---------- | --- | ---- |
-|A1| [Programming Paths (Part 1)](https://www.facebook.com/codingcompetitions/hacker-cup/2023/final-round/problems/A1)| [Python3](./Final%20Round/programming_paths_part_1.py3) | precompute: _O(R * C)_<br>runtime: _O(R * C)_ | _O(R * C)_ | Easy | | Constructive Algorithms, BFS, Bitmasks |
+|A1| [Programming Paths (Part 1)](https://www.facebook.com/codingcompetitions/hacker-cup/2023/final-round/problems/A1)| [Python3](./Final%20Round/programming_paths_part_1.py3) [Python3](./Final%20Round/programming_paths_part_1_2.py3) | precompute: _O(R * C)_<br>runtime: _O(R * C)_ | _O(R * C)_ | Easy | | Constructive Algorithms, BFS, Bitmasks |
 |A2| [Programming Paths (Part 2)](https://www.facebook.com/codingcompetitions/hacker-cup/2023/final-round/problems/A2)| [Python3](./Final%20Round/programming_paths_part_2.py3) [Python3](./Final%20Round/programming_paths_part_2_2.py3) | precompute: _O(R * C + K^2 * D)_<br>runtime: _O(R * C)_ | _O(R * C + K^2)_ | Hard | | Constructive Algorithms, BFS, DP, Backtracing |
 |B| [Transposing Tiles](https://www.facebook.com/codingcompetitions/hacker-cup/2023/final-round/problems/B)| [PyPy3](./Final%20Round/transposing_tiles.py3) | _O(R * C * 3136)_ | _O(R * C + 16)_ | Easy | | Freq Table, DP |
 |C| [Resisting Robots](https://www.facebook.com/codingcompetitions/hacker-cup/2023/final-round/problems/C)| [Python3](./Final%20Round/resisting_robots.py3) | _O(NlogN + M)_ | _O(N + M)_ | Easy | | Sort, Union Find, DSU, DP |
