@@ -72,19 +72,22 @@ def generate(K):
             result[r][c] = '*'
         d[0] += 1
 
-    def set_bit():
-        fill(0, 0)
+    def double_plus_zero():
+        fill(0, 1)
+        fill(1, 1)
 
-    def double_plus_set_bit():
+    def double_plus_one():
+        fill(0, 0)
         fill(0, 1)
         fill(1, 1)
 
     result = [list(row) for row in G]
     d = [1]
     for l in reversed(range(K.bit_length())):
-        if (K>>l)&1:
-            set_bit()
-        double_plus_set_bit()
+        if (K>>l)&1 == 0:
+            double_plus_zero()
+        else:
+            double_plus_one()
     return result
 
 def programming_paths_part_1():
