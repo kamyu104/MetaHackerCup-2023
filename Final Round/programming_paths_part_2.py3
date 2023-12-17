@@ -82,6 +82,7 @@ def precompute():
     assert(all(cnts[r][c] == 1 for candidates in depths for r, c in candidates))
     dp2 = {0:(0, 0)}
     dp = {(0, 0):None}
+    lookup = {(0, 0, 0)}
     q = [(0, 0)]
     d = 0
     while q:
@@ -90,15 +91,16 @@ def precompute():
             break
         new_q = []
         for A, B in q:
-            new_q.append((A, B))
-            for p in range(1, min(len(depths[d]), 2)+1):
-                new_A_B = op(A, B, d%2, p%2)
-                if not (0 <= new_A_B[0] <= MAX_K and 0 <= new_A_B[1] <= MAX_K and new_A_B not in dp):
+            for p in range(min(len(depths[d]), 2)+1):
+                new_A, new_B = op(A, B, d%2, p%2) if p != 0 else (A, B)
+                if not (0 <= new_A <= MAX_K and 0 <= new_B <= MAX_K and (new_A, new_B, d%2) not in lookup):
                     continue
-                if new_A_B[0] not in dp2:
-                    dp2[new_A_B[0]] = new_A_B
-                dp[new_A_B] = (depths[d][:p], (A, B))
-                new_q.append(new_A_B)
+                lookup.add((new_A, new_B, d%2))
+                if new_A not in dp2:
+                    dp2[new_A] = (new_A, new_B)
+                if (new_A, new_B) not in dp:
+                    dp[new_A, new_B] = (depths[d][:p], (A, B))
+                new_q.append((new_A, new_B))
         q = new_q
     return dp, dp2
 
