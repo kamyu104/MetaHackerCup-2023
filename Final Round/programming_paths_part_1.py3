@@ -75,15 +75,11 @@ def generate(K):
         fill(0, 0)
 
     def double():
-        if not is_same[0]:
-            is_same[0] = True
-            fill(0, 1)
         fill(0, 1)
         fill(1, 1)
 
     result = [list(row) for row in G]
     d = [1]
-    is_same = [False]
     base = 1<<K.bit_length()
     while base:
         base >>= 1
