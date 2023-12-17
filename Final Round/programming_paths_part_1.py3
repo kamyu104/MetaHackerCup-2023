@@ -71,10 +71,10 @@ def generate(K):
             result[r][c] = '*'
         d[0] += 1
 
-    def increase():
+    def set_bit():
         fill(0, 0)
 
-    def double():
+    def double_plus_last_set_bit():
         fill(0, 1)
         fill(1, 1)
 
@@ -83,9 +83,9 @@ def generate(K):
     base = 1<<K.bit_length()
     while base:
         base >>= 1
-        double()
+        double_plus_last_set_bit()
         if K&base:
-            increase()
+            set_bit()
     return result
 
 def programming_paths_part_1():
