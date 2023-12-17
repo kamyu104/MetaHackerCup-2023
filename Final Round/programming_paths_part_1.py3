@@ -67,8 +67,8 @@ def generate(K):
         P = (P-1)%2+1
         while not (d[0]%2 == D and len(DEPTHS[d[0]]) >= P):
             d[0] += 1
-        for i in range(P):
-            result[DEPTHS[d[0]][i][0]][DEPTHS[d[0]][i][1]] = '*'
+        for r, c in DEPTHS[d[0]][:P]:
+            result[r][c] = '*'
         d[0] += 1
 
     def increase():
