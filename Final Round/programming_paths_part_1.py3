@@ -4,7 +4,7 @@
 # https://www.facebook.com/codingcompetitions/hacker-cup/2023/final-round/problems/A1
 #
 # Time:  precompute: O(R * C)
-#        runtime:    O(R * C + logK)
+#        runtime:    O(R * C)
 # Space: O(R * C)
 #
 
