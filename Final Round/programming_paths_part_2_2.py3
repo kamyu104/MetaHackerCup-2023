@@ -92,7 +92,7 @@ def precompute():
             for p in range(2):
                 idxs = next(([(r, c)] for r, c in depths[d] if cnts[r][c]%2 == p), [])
                 if not idxs:
-                    if not (len(depths[d]) >= 2 and p == 0):
+                    if not (p == 0 and len(depths[d]) >= 2):
                         continue
                     idxs = depths[d][:2]
                 new_A_B = op(A, B, d%2, p)
