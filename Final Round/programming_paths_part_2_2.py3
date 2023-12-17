@@ -82,18 +82,18 @@ def precompute():
     assert(all(cnts[r][c] >= 1 for candidates in depths for r, c in candidates))
     dp = {(0, 0):None}
     dp2 = {0:(0, 0)}
-    d = 0
+    d = 1
     lookup = {(0, 0, d%2)}
     q = [(0, 0)]
     while q:
-        d += 1
         if not depths[d]:
             break
         new_q = []
         for A, B in q:
             for p in range(min(len(depths[d]), 2)+1):
                 new_A, new_B = op(A, B, d%2, p%2) if p != 0 else (A, B)
-                if not (0 <= new_A <= MAX_K and 0 <= new_B <= MAX_K and (new_A, new_B, d%2) not in lookup):
+                new_d = d+1
+                if not (0 <= new_A <= MAX_K and 0 <= new_B <= MAX_K and (new_A, new_B, new_d%2) not in lookup):
                     continue
                 if p != 0:
                     idxs = next(([(r, c)] for r, c in depths[d] if cnts[r][c]%2 == p%2), [])
@@ -101,13 +101,14 @@ def precompute():
                         if p != 2:
                             continue
                         idxs = depths[d][:p]
-                lookup.add((new_A, new_B, d%2))
+                lookup.add((new_A, new_B, new_d%2))
                 new_q.append((new_A, new_B))
                 if (new_A, new_B) not in dp:
                     dp[new_A, new_B] = (idxs, (A, B))
                 if new_A not in dp2:
                     dp2[new_A] = (new_A, new_B)
         q = new_q
+        d += 1
     return dp, dp2
 
 DIRECTIONS = ((1, 0), (0, 1), (-1, 0), (0, -1))
