@@ -63,8 +63,8 @@ def check(G, K):
     assert(A == K)
 
 def generate(K):
-    def fill(_, cnt):
-        assert(d[0] < len(DEPTHS) and len(DEPTHS[d[0]]) >= cnt)
+    def fill(D, cnt):
+        assert(d[0] < len(DEPTHS) and d[0]%2 == D and len(DEPTHS[d[0]]) >= cnt)
         for r, c in DEPTHS[d[0]][:cnt]:
             result[r][c] = '*'
         d[0] += 1
@@ -90,7 +90,6 @@ def generate(K):
     def iter_dfs(x):
         stk = [(1, (x,))]
         while stk:
-            assert(d[0]%2 == 0)
             step, args = stk.pop()
             if step == 1:
                 x = args[0]
