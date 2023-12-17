@@ -109,7 +109,8 @@ G = [
 ]
 R, C = len(G), len(G[0])
 MAX_K = 10000
-DEPTHS, _ = bfs(G)
+DEPTHS, CNTS = bfs(G)
+assert(all(CNTS[r][c] == 1 for candidates in DEPTHS for r, c in candidates))
 for K in range(MAX_K+1):
     check(generate(K), K)
 for case in range(int(input())):

@@ -79,6 +79,7 @@ def programming_paths_part_2():
 
 def precompute():
     depths, cnts = bfs(G)
+    assert(all(cnts[r][c] == 1 for candidates in depths for r, c in candidates))
     dp = {(0, 0):None}
     q = [(0, 0)]
     d = 0
@@ -91,7 +92,6 @@ def precompute():
             new_q.append((A, B))
             for p in range(1, min(len(depths[d]), 2)+1):
                 idxs = depths[d][:p]
-                assert(sum(cnts[r][c] for r, c in idxs)%2 == p%2)
                 new_A_B = op(A, B, d%2, p%2)
                 if not (0 <= new_A_B[0] <= MAX_K and 0 <= new_A_B[1] <= MAX_K and new_A_B not in dp):
                     continue
