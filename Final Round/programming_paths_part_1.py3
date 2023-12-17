@@ -41,8 +41,8 @@ def bfs(G, extend=lambda: None, add=lambda r, c: None):
                 if lookup[nr][nc] != -1:
                     continue
                 lookup[nr][nc] = len(depths)-1
-                add(nr, nc)
                 depths[-1].append((nr, nc))
+                add(nr, nc)
     return depths, cnts
 
 def check(G, K):
