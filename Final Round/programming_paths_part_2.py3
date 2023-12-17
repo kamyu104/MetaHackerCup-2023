@@ -89,11 +89,11 @@ def precompute():
         new_q = []
         for A, B in q:
             new_q.append((A, B))
-            for cnt in range(1, len(depths[d])+1):
-                new_A_B = op(A, B, d%2, cnt%2)
+            for p in range(1, min(len(depths[d]), 2)+1):
+                new_A_B = op(A, B, d%2, p%2)
                 if not (0 <= new_A_B[0] <= MAX_K and 0 <= new_A_B[1] <= MAX_K and new_A_B not in dp):
                     continue
-                dp[new_A_B] = (depths[d][:cnt], (A, B))
+                dp[new_A_B] = (depths[d][:p], (A, B))
                 new_q.append(new_A_B)
         q = new_q
     return dp
