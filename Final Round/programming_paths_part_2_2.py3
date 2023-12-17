@@ -82,9 +82,9 @@ def precompute():
     assert(all(cnts[r][c] >= 1 for candidates in depths for r, c in candidates))
     dp = {(0, 0):None}
     dp2 = {0:(0, 0)}
-    lookup = {(0, 0, 0)}
-    q = [(0, 0)]
     d = 0
+    lookup = {(0, 0, d)}
+    q = [(0, 0)]
     while q:
         d += 1
         if not depths[d]:
