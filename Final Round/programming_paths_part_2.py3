@@ -78,22 +78,24 @@ def programming_paths_part_2():
     return "%s %s\n%s" % (R, C, "\n".join(map(lambda x: "".join(x), result)))
 
 def precompute():
-    depths, _ = bfs(G)
+    depths, cnts = bfs(G)
     dp = {(0, 0):None}
     q = [(0, 0)]
     d = 0
     while q:
         d += 1
-        if d == len(depths):
+        if not depths[d]:
             break
         new_q = []
         for A, B in q:
             new_q.append((A, B))
             for p in range(1, min(len(depths[d]), 2)+1):
+                idxs = depths[d][:p]
+                assert(sum(cnts[r][c] for r, c in idxs)%2 == p%2)
                 new_A_B = op(A, B, d%2, p%2)
                 if not (0 <= new_A_B[0] <= MAX_K and 0 <= new_A_B[1] <= MAX_K and new_A_B not in dp):
                     continue
-                dp[new_A_B] = (depths[d][:p], (A, B))
+                dp[new_A_B] = (idxs, (A, B))
                 new_q.append(new_A_B)
         q = new_q
     return dp

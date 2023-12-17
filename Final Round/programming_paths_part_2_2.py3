@@ -95,6 +95,7 @@ def precompute():
                     if p != 2:
                         continue
                     idxs = depths[d][:p]
+                assert(sum(cnts[r][c] for r, c in idxs)%2 == p%2)
                 new_A_B = op(A, B, d%2, p%2)
                 if not (0 <= new_A_B[0] <= MAX_K and 0 <= new_A_B[1] <= MAX_K and new_A_B not in dp):
                     continue
