@@ -63,27 +63,27 @@ def check(G, K):
     assert(A == K)
 
 def generate(K):
-    def fill(cnt):
+    def fill(_, cnt):
         assert(d[0] < len(DEPTHS) and len(DEPTHS[d[0]]) >= cnt)
         for r, c in DEPTHS[d[0]][:cnt]:
             result[r][c] = '*'
         d[0] += 1
 
     def double_plus_zero():
-        fill(1)
-        fill(1)
+        fill(0, 1)
+        fill(1, 1)
 
     def double_plus_one():
-        fill(2)
-        fill(0)
-        fill(1)
-        fill(1)
+        fill(0, 2)
+        fill(1, 0)
+        fill(0, 1)
+        fill(1, 1)
 
     def double_minus_one():
-        fill(0)
-        fill(2)
-        fill(1)
-        fill(1)
+        fill(0, 0)
+        fill(1, 2)
+        fill(0, 1)
+        fill(1, 1)
 
     result = [list(row) for row in G]
     d = [2]

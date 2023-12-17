@@ -63,12 +63,13 @@ def check(G, K):
     assert(A == K)
 
 def generate(K):
-    def fill(D, P):
-        P = (P-1)%2+1
-        while not (d[0]%2 == D and len(DEPTHS[d[0]]) >= P):
+    def fill(D, cnt):
+        while d[0] < len(DEPTHS):
+            if d[0]%2 == D and len(DEPTHS[d[0]]) >= cnt:
+                break
             d[0] += 1
-            assert(d[0] < len(DEPTHS))
-        for r, c in DEPTHS[d[0]][:P]:
+        assert(d[0] < len(DEPTHS))
+        for r, c in DEPTHS[d[0]][:cnt]:
             result[r][c] = '*'
         d[0] += 1
 
@@ -77,7 +78,7 @@ def generate(K):
         fill(1, 1)
 
     def double_plus_one():
-        fill(0, 0)
+        fill(0, 2)
         fill(0, 1)
         fill(1, 1)
 
