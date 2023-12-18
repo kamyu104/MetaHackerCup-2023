@@ -88,14 +88,13 @@ def build(K):
     result = [list(row) for row in G]
     d = [2]
     def iter_dfs(x):
+        if x == 0:
+            return
         stk = [(1, (x,))]
         while stk:
             step, args = stk.pop()
             if step == 1:
                 x = args[0]
-                if x == 0:
-                    double_plus_zero()
-                    continue
                 if x == 1:
                     double_plus_one()
                     continue
