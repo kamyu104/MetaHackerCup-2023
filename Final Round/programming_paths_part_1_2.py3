@@ -90,29 +90,23 @@ def build(K):
     def iter_dfs(x):
         if x == 0:
             return
-        stk = [(1, (x,))]
-        while stk:
-            step, args = stk.pop()
-            if step == 1:
-                x = args[0]
-                if x == 1:
-                    double_plus_one()
-                    continue
-                if x%2 == 0:
-                    stk.append((2, (double_plus_zero,)))
-                    stk.append((1, (x//2,)))
-                    continue
-                if x%4 == 1:
-                    stk.append((2, (double_plus_zero, double_plus_one)))
-                    stk.append((1, (x//4,)))
-                    continue
-                if x%4 == 3:
-                    stk.append((2, (double_plus_zero, double_minus_one)))
-                    stk.append((1, (x//4+1,)))
-                    continue
-            elif step == 2:
-                for fn in args:
-                    fn()
+        fns = []
+        while x != 1:
+            if x%2 == 0:
+                x //= 2
+                fns.append(lambda: double_plus_zero())
+                continue
+            if x%4 == 1:
+                x //= 4
+                fns.append(lambda: (double_plus_zero(), double_plus_one()))
+                continue
+            if x%4 == 3:
+                x = x//4+1
+                fns.append(lambda: (double_plus_zero(), double_minus_one()))
+                continue
+        double_plus_one()
+        for fn in reversed(fns):
+            fn()
 
     iter_dfs(K)
     return result
