@@ -94,7 +94,7 @@ def build(K):
         while x != 1:
             if x%2 == 0:
                 x //= 2
-                fns.append(lambda: double_plus_zero())
+                fns.append(lambda: (double_plus_zero(),))
                 continue
             if x%4 == 1:
                 x //= 4
