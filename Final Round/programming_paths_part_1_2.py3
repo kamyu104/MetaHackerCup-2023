@@ -93,11 +93,11 @@ def build(K):
         fns = []
         while x != 1:
             if x%2 == 0:
-                x //= 2
+                x = x//2
                 fns.append(lambda: (double_plus_zero(),))
                 continue
             if x%4 == 1:
-                x //= 4
+                x = x//4
                 fns.append(lambda: (double_plus_zero(), double_plus_one()))
                 continue
             if x%4 == 3:
