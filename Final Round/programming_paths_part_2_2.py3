@@ -82,14 +82,13 @@ def precompute():
     assert(all(cnts[r][c] >= 1 for candidates in depths for r, c in candidates))
     start = (0, 0, 1)
     dp = {start:None}
-    dp2 = {0:start}
     q = [start]
     while q:
         new_q = []
         for state in q:
             A, B, d = state
             if not depths[d]:
-                return dp, dp2
+                return dp, {A:(A, B, d) for (A, B, d) in dp.keys()}
             for p in range(min(len(depths[d]), 2)+1):
                 new_A, new_B = op(A, B, d%2, p%2) if p != 0 else (A, B)
                 new_state = (new_A, new_B, d+1)
@@ -103,8 +102,6 @@ def precompute():
                             continue
                         idxs = depths[d][:p]
                 dp[new_state] = (idxs, state)
-                if new_A not in dp2:
-                    dp2[new_A] = new_state
                 new_q.append(new_state)
         q = new_q
 
