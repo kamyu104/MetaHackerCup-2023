@@ -97,7 +97,7 @@ def precompute():
                             continue
                         idxs = depths[d][:p]
                 dp[new_state] = (idxs, state)
-    return dp, {A:(A, B) for (A, B) in dp.keys()}
+    return dp, {A:(A, B) for A, B in dp.keys()}
 
 DIRECTIONS = ((1, 0), (0, 1), (-1, 0), (0, -1))
 G = [

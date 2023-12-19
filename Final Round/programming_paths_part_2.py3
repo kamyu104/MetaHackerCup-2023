@@ -90,7 +90,7 @@ def precompute():
                 if not (0 <= new_A <= MAX_K and 0 <= new_B <= MAX_K and new_state not in dp):
                     continue
                 dp[new_state] = (depths[d][:p], state)
-    return dp, {A:(A, B) for (A, B) in dp.keys()}
+    return dp, {A:(A, B) for A, B in dp.keys()}
 
 DIRECTIONS = ((1, 0), (0, 1), (-1, 0), (0, -1))
 G = [
