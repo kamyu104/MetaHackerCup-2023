@@ -83,19 +83,19 @@ def precompute():
     dp = {(0, 0):None}
     dp2 = {0:(0, 0)}
     d = 1
-    lookup = {(0, 0, d)}
     q = [(0, 0)]
     while q:
         if not depths[d]:
             break
+        lookup = set()
         new_q = []
         for A, B in q:
             for p in range(min(len(depths[d]), 2)+1):
                 new_A, new_B = op(A, B, d%2, p%2) if p != 0 else (A, B)
                 new_d = d+1
-                if not (0 <= new_A <= MAX_K and 0 <= new_B <= MAX_K and (new_A, new_B, new_d) not in lookup):
+                if not (0 <= new_A <= MAX_K and 0 <= new_B <= MAX_K and (new_A, new_B) not in lookup):
                     continue
-                lookup.add((new_A, new_B, new_d))
+                lookup.add((new_A, new_B))
                 new_q.append((new_A, new_B))
                 if (new_A, new_B) not in dp:
                     dp[new_A, new_B] = (depths[d][:p], (A, B))
