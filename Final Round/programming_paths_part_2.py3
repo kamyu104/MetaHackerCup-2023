@@ -85,8 +85,8 @@ def precompute():
         for state in list(dp.keys()):
             A, B = state
             for p in range(1, min(len(depths[d]), 2)+1):
-                new_A, new_B = op(A, B, d%2, p%2)
-                new_state = (new_A, new_B)
+                new_state = op(A, B, d%2, p%2)
+                new_A, new_B = new_state
                 if not (0 <= new_A <= MAX_K and 0 <= new_B <= MAX_K and new_state not in dp):
                     continue
                 dp[new_state] = (depths[d][:p], state)
