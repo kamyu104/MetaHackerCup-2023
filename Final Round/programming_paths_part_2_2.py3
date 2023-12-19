@@ -80,18 +80,13 @@ def programming_paths_part_2():
 def precompute():
     depths, cnts = bfs(G)
     assert(all(cnts[r][c] >= 1 for candidates in depths for r, c in candidates))
-    start = (0, 0, 1)
-    dp = {start:None}
-    q = [start]
-    while q:
-        new_q = []
-        for state in q:
-            A, B, d = state
-            if not depths[d]:
-                return dp, {A:(A, B, d) for (A, B, d) in dp.keys()}
-            for p in range(min(len(depths[d]), 2)+1):
-                new_A, new_B = op(A, B, d%2, p%2) if p != 0 else (A, B)
-                new_state = (new_A, new_B, d+1)
+    dp = {(0, 0):None}
+    for d in range(1, len(depths)-1):
+        for state in list(dp.keys()):
+            A, B = state
+            for p in range(1, min(len(depths[d]), 2)+1):
+                new_A, new_B = op(A, B, d%2, p%2)
+                new_state = (new_A, new_B)
                 if not (0 <= new_A <= MAX_K and 0 <= new_B <= MAX_K and new_state not in dp):
                     continue
                 idxs = []
@@ -102,8 +97,7 @@ def precompute():
                             continue
                         idxs = depths[d][:p]
                 dp[new_state] = (idxs, state)
-                new_q.append(new_state)
-        q = new_q
+    return dp, {A:(A, B) for (A, B) in dp.keys()}
 
 DIRECTIONS = ((1, 0), (0, 1), (-1, 0), (0, -1))
 G = [
