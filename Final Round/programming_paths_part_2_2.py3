@@ -81,6 +81,7 @@ def precompute():
     depths, cnts = bfs(G)
     assert(all(cnts[r][c] >= 1 for candidates in depths for r, c in candidates))
     dp = {(0, 0):None}
+    dp2 = {0:(0, 0)}
     for d in range(1, len(depths)-1):
         for state in list(dp.keys()):
             A, B = state
@@ -97,7 +98,11 @@ def precompute():
                             continue
                         idxs = depths[d][:p]
                 dp[new_state] = (idxs, state)
-    return dp, {A:(A, B) for A, B in dp.keys()}
+                if new_A in dp2:
+                    continue
+                dp2[new_A] = new_state
+                if len(dp2) == MAX_K+1:
+                    return dp, dp2
 
 DIRECTIONS = ((1, 0), (0, 1), (-1, 0), (0, -1))
 G = [
